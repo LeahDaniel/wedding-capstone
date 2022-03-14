@@ -4,6 +4,7 @@ import { ApplicationViews } from "./ApplicationViews";
 import { NavBar } from "./nav/NavBar";
 import { Login } from "./auth/Login";
 import { RegisterHost } from "./auth/RegisterHost";
+import { RegisterVendor } from "./auth/RegisterVendor";
 
 export const Wedding = () => {
     return (
@@ -29,8 +30,11 @@ export const Wedding = () => {
             <Route path="/login">
                 <Login />
             </Route>
-            <Route path="/register">
+            <Route path="/registerHost">
                 <RegisterHost />
+            </Route>
+            <Route path="/registerVendor">
+                <RegisterVendor />
             </Route>
         </>
     )
