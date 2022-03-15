@@ -12,7 +12,7 @@ export const Wedding = () => {
             <Route
                 render={() => {
                     // if there is a user logged in, show the navbar and app
-                    if (localStorage.getItem("wedding_token")) {
+                    if (localStorage.getItem("vendor_token") || localStorage.getItem("host_token")) {
                         return (
                             <>
                                 <NavBar/>

@@ -17,8 +17,11 @@ export const Login = () => {
             password: password.current.value
         })
             .then(res => {
-                if ("valid" in res && res.valid && "token" in res) {
-                    localStorage.setItem("rare_token", res.token)
+                if ("valid" in res && res.valid && "token" in res && res.is_staff) {
+                    localStorage.setItem("vendor_token", res.token)
+                    history.push("/")
+                } else if (!res.is_staff) {
+                    localStorage.setItem("host_token", res.token)
                     history.push("/")
                 }
                 else {
