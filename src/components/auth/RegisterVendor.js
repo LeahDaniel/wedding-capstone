@@ -58,7 +58,8 @@ export const RegisterVendor = () => {
                 description: description.current.value,
                 city: city.current.value,
                 state: state.current.value,
-                zip_code: zipCode.current.value
+                zip_code: zipCode.current.value,
+                wedding_sizes: Array.from(chosenWeddingSizes)
             }
 
             registerVendor(newUser)
