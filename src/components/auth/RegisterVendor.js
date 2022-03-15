@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom"
 import { getVendorTypes, getWeddingSizes, registerVendor } from "./AuthManager"
 
 export const RegisterVendor = () => {
+    const history = useHistory()
     const firstName = useRef()
     const lastName = useRef()
     const username = useRef()
@@ -17,15 +18,16 @@ export const RegisterVendor = () => {
     const city = useRef()
     const state = useRef()
     const zipCode = useRef()
-    const history = useHistory()
     const [string, setString] = useState("")
     const [vendorTypes, setVendorTypes] = useState([])
     const [weddingSizes, setWeddingSizes] = useState([])
     const [chosenWeddingSizes, setChosenWeddingSizes] = useState(new Set())
 
     useEffect(() => {
-        getVendorTypes().then(setVendorTypes)
-        getWeddingSizes().then(setWeddingSizes)
+        getVendorTypes()
+            .then(setVendorTypes)
+            .then(getWeddingSizes)
+            .then(setWeddingSizes)
     }, [])
 
     const getBase64 = (file, callback) => {
@@ -45,18 +47,18 @@ export const RegisterVendor = () => {
 
         if (password.current.value === verifyPassword.current.value) {
             const newUser = {
-                "username": username.current.value,
-                "password": password.current.value,
-                "first_name": firstName.current.value,
-                "last_name": lastName.current.value,
-                "vendor_type_id": vendorTypeId.current.value,
-                "business_name": businessName.current.value,
-                "profile_image": string,
-                "years_in_business": yearsInBusiness.current.value,
-                "description": description.current.value,
-                "city": city.current.value,
-                "state": state.current.value,
-                "zip_code": zipCode.current.value
+                username: username.current.value,
+                password: password.current.value,
+                first_name: firstName.current.value,
+                last_name: lastName.current.value,
+                vendor_type_id: vendorTypeId.current.value,
+                business_name: businessName.current.value,
+                profile_image: string,
+                years_in_business: yearsInBusiness.current.value,
+                description: description.current.value,
+                city: city.current.value,
+                state: state.current.value,
+                zip_code: zipCode.current.value
             }
 
             registerVendor(newUser)
@@ -156,11 +158,13 @@ export const RegisterVendor = () => {
                                             name="weddingSize"
                                             value={weddingSize.id}
                                             checked={chosenWeddingSizes.has(weddingSize.id) ? true : false}
-                                            onClick={
+                                            onChange={
                                                 (evt) => {
-                                                    chosenWeddingSizes.has(parseInt(evt.target.value))
-                                                        ? chosenWeddingSizes.delete(parseInt(evt.target.value))
-                                                        : chosenWeddingSizes.add(parseInt(evt.target.value))
+                                                    const copy = new Set(chosenWeddingSizes)
+                                                    copy.has(parseInt(evt.target.value))
+                                                        ? copy.delete(parseInt(evt.target.value))
+                                                        : copy.add(parseInt(evt.target.value))
+                                                    setChosenWeddingSizes(copy)
                                                 }} />
                                         {
                                             weddingSize.max_guests === null

@@ -1,5 +1,6 @@
 import React, { useRef } from "react"
 import { Link, useHistory } from "react-router-dom"
+import { loginUser } from "./AuthManager"
 
 
 export const Login = () => {
@@ -11,18 +12,10 @@ export const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault()
 
-        return fetch("http://127.0.0.1:8000/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                username: username.current.value,
-                password: password.current.value
-            })
+        loginUser({
+            username: username.current.value,
+            password: password.current.value
         })
-            .then(res => res.json())
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem("rare_token", res.token)
@@ -41,7 +34,7 @@ export const Login = () => {
                 <button className="delete" onClick={e => invalidDialog.current.close()}>Close</button>
             </dialog>
             <form className="column mt-6 is-two-thirds" onSubmit={handleLogin}>
-                <h1 className="title">Rare Publishing</h1>
+                <h1 className="title">Wedding Planning</h1>
                 <h2 className="subtitle pt-2">Please sign in</h2>
                 <fieldset className="field mb-5">
                     <label htmlFor="inputUsername" className="label"> Username address </label>
