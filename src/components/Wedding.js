@@ -16,7 +16,9 @@ export const Wedding = () => {
                         return (
                             <>
                                 <NavBar/>
-                                <ApplicationViews/>
+                                <div className="container">
+                                    <ApplicationViews/>
+                                </div>
                                 <div className="bottom"></div>
                             </>
                         );
