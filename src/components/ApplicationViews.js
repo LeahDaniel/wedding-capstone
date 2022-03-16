@@ -3,7 +3,7 @@ import { Route } from "react-router-dom"
 import { ContractList } from "./vendor/contracts/ContractList"
 import HostProfile from "./vendor/contracts/HostProfile"
 import MessageList from "./vendor/messages/MessageList"
-import MessageManager from "./vendor/messages/MessageManager"
+import MessageView from "./vendor/messages/MessageView"
 import VendorProfile from "./vendor/profile/VendorProfile"
 
 
@@ -18,7 +18,7 @@ export const ApplicationViews = () => {
                 <HostProfile />
             </Route>
             <Route exact path="/messages">
-                <MessageManager />
+                <MessageView />
             </Route>
             <Route exact path="/messages/:hostId(\d+)">
                 <MessageList />

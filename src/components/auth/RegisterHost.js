@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { getWeddingSizes, registerHost } from "./AuthManager"
 
-export const RegisterHost = () => {
+export const RegisterHost = ({setIsHost}) => {
     const firstName = useRef()
     const lastName = useRef()
     const username = useRef()
@@ -42,24 +42,25 @@ export const RegisterHost = () => {
 
         if (password.current.value === verifyPassword.current.value) {
             const newUser = {
-                "username": username.current.value,
-                "password": password.current.value,
-                "first_name": firstName.current.value,
-                "last_name": lastName.current.value,
-                "wedding_size_id": weddingSizeId.current.value,
-                "profile_image": string,
-                "date": date.current.value,
-                "time": time.current.value,
-                "street_address": streetAddress.current.value,
-                "city": city.current.value,
-                "state": state.current.value,
-                "zip_code": zipCode.current.value
+                username: username.current.value,
+                password: password.current.value,
+                first_name: firstName.current.value,
+                last_name: lastName.current.value,
+                wedding_size_id: weddingSizeId.current.value,
+                profile_image: string,
+                date: date.current.value,
+                time: time.current.value,
+                street_address: streetAddress.current.value,
+                city: city.current.value,
+                state: state.current.value,
+                zip_code: zipCode.current.value
             }
 
             registerHost(newUser)
                 .then(res => {
                     if ("token" in res) {
-                        localStorage.setItem("host_token", res.token)
+                        setIsHost(true)
+                        localStorage.setItem("wedding_token", res.token)
                         history.push("/")
                     } else {
                         usernameDialog.current.showModal()

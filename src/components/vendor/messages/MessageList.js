@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { getCurrentVendor, getHost, getHostVendor, getHostVendorByStakeholders, getMessages } from "../VendorManager"
+import { getHost } from "../../../managers/HostManager"
+import { getHostVendorByStakeholders } from "../../../managers/HostVendorManager"
+import { getMessages } from "../../../managers/MessageManager"
+import { getCurrentVendor } from "../../../managers/VendorManager"
 import DenyModal from "./DenyModal"
 import MessageForm from "./MessageForm"
 import QuitModal from "./QuitModal"
@@ -50,7 +53,7 @@ export default () => {
                 hostVendor={hostVendor} setHostVendor={setHostVendor} 
                 host={host} vendor={vendor} setMessages={setMessages}/>
 
-            <h1 className="subtitle">Messages with {host.user?.first_name}</h1>
+            <h1 className="subtitle">Messages with {host.user?.username}</h1>
 
             <div id="button-controller">
                 {

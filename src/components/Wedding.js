@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { ApplicationViews } from "./ApplicationViews";
 import { NavBar } from "./nav/NavBar";
@@ -7,17 +7,20 @@ import { RegisterHost } from "./auth/RegisterHost";
 import { RegisterVendor } from "./auth/RegisterVendor";
 
 export const Wedding = () => {
+    const [isVendor, setIsVendor] = useState(false)
+    const [isHost, setIsHost] = useState(false)
+
     return (
         <>
             <Route
                 render={() => {
                     // if there is a user logged in, show the navbar and app
-                    if (localStorage.getItem("vendor_token") || localStorage.getItem("host_token")) {
+                    if (isHost || isVendor) {
                         return (
                             <>
-                                <NavBar/>
+                                <NavBar isHost={isHost} isVendor={isVendor}/>
                                 <div className="container">
-                                    <ApplicationViews/>
+                                    <ApplicationViews isHost={isHost} isVendor={isVendor}/>
                                 </div>
                                 <div className="bottom"></div>
                             </>
@@ -30,13 +33,13 @@ export const Wedding = () => {
             />
 
             <Route path="/login">
-                <Login />
+                <Login setIsHost={setIsHost} setIsVendor={setIsVendor}/>
             </Route>
             <Route path="/registerHost">
-                <RegisterHost />
+                <RegisterHost setIsHost={setIsHost}/>
             </Route>
             <Route path="/registerVendor">
-                <RegisterVendor />
+                <RegisterVendor setIsVendor={setIsVendor}/>
             </Route>
         </>
     )

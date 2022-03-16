@@ -1,4 +1,5 @@
-import { createMessage, deleteHostVendor, getMessages } from "../VendorManager"
+import { deleteHostVendor } from "../../../managers/HostVendorManager"
+import { createMessage, getMessages } from "../../../managers/MessageManager"
 
 export default ({openDenyModal, setOpenDenyModal, hostVendor, setHostVendor, host, vendor, setMessages}) => {
 

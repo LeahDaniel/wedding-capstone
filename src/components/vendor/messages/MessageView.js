@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { getCurrentVendor, getHostThreads } from "../VendorManager"
+import { getHostThreads } from "../../../managers/MessageManager"
+import { getCurrentVendor } from "../../../managers/VendorManager"
 
 export default () => {
     const [threads, setThreads] = useState([])
@@ -19,7 +20,7 @@ export default () => {
                     threads.map(thread => {
                         return <div className="box" key={thread.id}>
                             <Link to={`/hosts/${thread.host.id}`}>
-                                <p>{thread.host.user.first_name} {thread.host.user.last_name}</p>
+                                <p>{thread.host.user.username}</p>
                             </Link>
                             <Link to={`/messages/${thread.host.id}`}>
                                 <p className={

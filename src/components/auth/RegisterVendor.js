@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { getVendorTypes, getWeddingSizes, registerVendor } from "./AuthManager"
 
-export const RegisterVendor = () => {
+export const RegisterVendor = ({setIsVendor}) => {
     const history = useHistory()
     const firstName = useRef()
     const lastName = useRef()
@@ -65,7 +65,8 @@ export const RegisterVendor = () => {
             registerVendor(newUser)
                 .then(res => {
                     if ("token" in res) {
-                        localStorage.setItem("vendor_token", res.token)
+                        setIsVendor(true)
+                        localStorage.setItem("wedding_token", res.token)
                         history.push("/")
                     } else {
                         usernameDialog.current.showModal()

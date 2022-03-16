@@ -1,4 +1,5 @@
-import { createMessage, fireHostVendor, getMessages } from "../VendorManager"
+import { fireHostVendor } from "../../../managers/HostVendorManager"
+import { createMessage, getMessages } from "../../../managers/MessageManager"
 
 export default ({openQuitModal, setOpenQuitModal, hostVendor, setHostVendor, host, vendor, setMessages}) => {
 

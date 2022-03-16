@@ -1,5 +1,6 @@
 import { useRef } from "react"
-import { createMessage, getMessages, quoteHostVendor } from "../VendorManager"
+import { quoteHostVendor } from "../../../managers/HostVendorManager"
+import { createMessage, getMessages } from "../../../managers/MessageManager"
 
 export default ({openQuoteModal, setOpenQuoteModal, hostVendor, setHostVendor, host, vendor, setMessages}) => {
     const costPerHour = useRef()

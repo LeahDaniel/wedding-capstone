@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom"
 import { loginUser } from "./AuthManager"
 
 
-export const Login = () => {
+export const Login = ({setIsHost, setIsVendor}) => {
     const username = useRef()
     const password = useRef()
     const invalidDialog = useRef()
@@ -18,10 +18,12 @@ export const Login = () => {
         })
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res && res.is_staff) {
-                    localStorage.setItem("vendor_token", res.token)
+                    setIsVendor(true)
+                    localStorage.setItem("wedding_token", res.token)
                     history.push("/")
                 } else if (!res.is_staff) {
-                    localStorage.setItem("host_token", res.token)
+                    setIsHost(true)
+                    localStorage.setItem("wedding_token", res.token)
                     history.push("/")
                 }
                 else {

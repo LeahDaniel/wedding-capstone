@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { getHost } from "../VendorManager"
+import { getHost } from "../../../managers/HostManager"
 
 export default () => {
     const {hostId} = useParams()
@@ -17,7 +17,7 @@ export default () => {
             <div >
                 <img src={`http://localhost:8000${host.profile_image}`} alt='user profile image'></img>
                 <h3 >
-                    {host.user?.first_name} {host.user?.last_name}
+                    {host.user?.username}
                 </h3>
             </div>
             <section >

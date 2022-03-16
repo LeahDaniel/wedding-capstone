@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import StarPicker from "react-star-picker"
-import { getCurrentVendor } from "../VendorManager"
+import { getCurrentVendor } from "../../../managers/VendorManager"
 import EditVendor from "./EditVendor"
 
 export default () => {
@@ -13,6 +13,7 @@ export default () => {
 
     return (
         <div className="p-5">
+            <img src={`http://localhost:8000${vendor.profile_image}`}/>
             <h1 className="subtitle">{vendor.business_name}</h1>
             <button className="button" onClick={() => setOpenEditModal(true)}>Edit Business</button>
             <EditVendor openEditModal={openEditModal} setOpenEditModal={setOpenEditModal}
