@@ -55,7 +55,7 @@ export const NavBar = () => {
                         }
 
                         <div className="navbar-dropdown is-right" ref={dropdown}>
-                            <a className="navbar-item has-text-weight-semibold">
+                            <a href="/vendor/profile" className="navbar-item has-text-weight-semibold">
                                 Business Profile
                             </a>
                             <hr className="navbar-divider" />

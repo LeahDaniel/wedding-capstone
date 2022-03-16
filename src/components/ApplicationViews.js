@@ -4,6 +4,7 @@ import { ContractList } from "./vendor/contracts/ContractList"
 import HostProfile from "./vendor/contracts/HostProfile"
 import MessageList from "./vendor/messages/MessageList"
 import MessageManager from "./vendor/messages/MessageManager"
+import VendorProfile from "./vendor/profile/VendorProfile"
 
 
 export const ApplicationViews = () => {
@@ -21,6 +22,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/messages/:hostId(\d+)">
                 <MessageList />
+            </Route>
+            <Route exact path="/vendor/profile">
+                <VendorProfile />
             </Route>
         </>
     )
