@@ -56,9 +56,9 @@ export const NavBar = ({ isVendor, isHost}) => {
                     {
                         isHost
                             ? <>
-                                <Link to="/" className="navbar-item has-text-weight-semibold">Vendors</Link>
+                                <Link to="/vendors" className="navbar-item has-text-weight-semibold">Vendors</Link>
                                 <Link to="/" className="navbar-item has-text-weight-semibold">Your Wedding</Link>
-                                <Link to="/" className="navbar-item has-text-weight-semibold">Messages</Link>
+                                <Link to="/messages" className="navbar-item has-text-weight-semibold">Messages</Link>
                             </>
                             : ""
                     }

@@ -7,6 +7,15 @@ export const getHostThreads = () => {
         .then(res => res.json())
 }
 
+export const getVendorThreads = () => {
+    return fetch(`http://localhost:8000/messages/vendorthreads`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("wedding_token")}`
+        }
+    })
+        .then(res => res.json())
+}
+
 export const getMessages = (hostId, vendorId) => {
     return fetch(`http://localhost:8000/messages?host=${hostId}&vendor=${vendorId}`, {
         headers:{

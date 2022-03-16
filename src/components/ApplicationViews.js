@@ -21,7 +21,7 @@ export const ApplicationViews = ({isHost, isVendor}) => {
                 <HostProfile isHost={isHost}/>
             </Route>
             <Route exact path="/messages">
-                <MessageView />
+                <MessageView isVendor={isVendor} isHost={isHost}/>
             </Route>
             <Route exact path="/messages/:hostId(\d+)">
                 <MessageList />
