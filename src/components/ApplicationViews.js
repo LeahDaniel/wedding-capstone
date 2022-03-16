@@ -1,13 +1,13 @@
 import React from "react"
 import { Route } from "react-router-dom"
-import { ContractList } from "./vendor/contracts/ContractList"
-import HostProfile from "./vendor/contracts/HostProfile"
-import MessageList from "./vendor/messages/MessageList"
-import MessageView from "./vendor/messages/MessageView"
-import VendorProfile from "./vendor/profile/VendorProfile"
+import { ContractList } from "./contracts/ContractList"
+import HostProfile from "./host/HostProfile"
+import MessageList from "./messages/MessageList"
+import MessageView from "./messages/MessageView"
+import VendorProfile from "./vendor/VendorProfile"
 
 
-export const ApplicationViews = () => {
+export const ApplicationViews = ({isHost, isVendor}) => {
 
     return (
         <>
@@ -15,7 +15,10 @@ export const ApplicationViews = () => {
                 <ContractList />
             </Route>
             <Route exact path="/hosts/:hostId(\d+)">
-                <HostProfile />
+                <HostProfile isVendor={isVendor}/>
+            </Route>
+            <Route exact path="/hosts/profile">
+                <HostProfile isHost={isHost}/>
             </Route>
             <Route exact path="/messages">
                 <MessageView />

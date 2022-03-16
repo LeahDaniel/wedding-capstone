@@ -60,6 +60,7 @@ export const RegisterHost = ({setIsHost}) => {
                 .then(res => {
                     if ("token" in res) {
                         setIsHost(true)
+                        localStorage.setItem("is_vendor", false)
                         localStorage.setItem("wedding_token", res.token)
                         history.push("/")
                     } else {

@@ -1,5 +1,5 @@
 import React, { useRef } from "react"
-import { createMessage, getMessages } from "../../../managers/MessageManager"
+import { createMessage, getMessages } from "../../managers/MessageManager"
 
 
 export default ({ host, vendor, setMessages }) => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { getHostThreads } from "../../../managers/MessageManager"
-import { getCurrentVendor } from "../../../managers/VendorManager"
+import { getHostThreads } from "../../managers/MessageManager"
+import { getCurrentVendor } from "../../managers/VendorManager"
 
 export default () => {
     const [threads, setThreads] = useState([])

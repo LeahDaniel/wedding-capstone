@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import StarPicker from "react-star-picker"
-import { getCurrentVendor } from "../../../managers/VendorManager"
+import { getCurrentVendor } from "../../managers/VendorManager"
 import EditVendor from "./EditVendor"
 
 export default () => {

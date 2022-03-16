@@ -6,3 +6,12 @@ export const getHost = (id) => {
     })
         .then(res => res.json())
 }
+
+export const getCurrentHost = () => {
+    return fetch(`http://localhost:8000/hosts/profile`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("wedding_token")}`
+        }
+    })
+        .then(res => res.json())
+}

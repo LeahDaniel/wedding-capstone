@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { getHost } from "../../../managers/HostManager"
+import { getCurrentHost, getHost } from "../../managers/HostManager"
 
-export default () => {
-    const {hostId} = useParams()
+export default ({ isHost, isVendor }) => {
+    const { hostId } = useParams()
     const [host, setHost] = useState({})
     const date = new Date(host.date).toLocaleDateString()
     const time = new Date('1970-01-01T' + host.time + 'Z').toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
 
     useEffect(() => {
-        getHost(hostId).then(setHost)
-    }, [])
+        if (isVendor) {
+            getHost(hostId).then(setHost)
+        } else if (isHost) {
+            getCurrentHost().then(setHost)
+        }
+    }, [isHost, isVendor])
 
     return (
         <section >
@@ -21,7 +25,7 @@ export default () => {
                 </h3>
             </div>
             <section >
-                <div>Their Wedding</div>
+                <div>Wedding Info </div>
                 <div> {date} at {time} </div>
                 <div>
                     <p>

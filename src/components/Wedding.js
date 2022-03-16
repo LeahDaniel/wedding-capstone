@@ -10,12 +10,21 @@ export const Wedding = () => {
     const [isVendor, setIsVendor] = useState(false)
     const [isHost, setIsHost] = useState(false)
 
+    useEffect(()=> {
+        let boolean = localStorage.getItem("is_vendor")
+        if(boolean === "true"){
+            setIsVendor(true)
+        }else if(boolean === "false") {
+            setIsHost(true)
+        }
+    })
+
     return (
         <>
             <Route
                 render={() => {
                     // if there is a user logged in, show the navbar and app
-                    if (isHost || isVendor) {
+                    if (localStorage.getItem("wedding_token")) {
                         return (
                             <>
                                 <NavBar isHost={isHost} isVendor={isVendor}/>

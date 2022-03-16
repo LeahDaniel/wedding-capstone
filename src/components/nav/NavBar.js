@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./NavBar.css"
 import Logo from "../../images/wedding-ring.png"
-import { getCurrentVendor } from "../vendor/VendorManager"
+import { getCurrentVendor } from "../../managers/VendorManager"
+import { getCurrentHost } from "../../managers/HostManager"
 
-export const NavBar = () => {
+export const NavBar = ({ isVendor, isHost}) => {
     const navbar = useRef()
     const hamburger = useRef()
     const dropdown = useRef()
@@ -14,8 +15,10 @@ export const NavBar = () => {
     const [showProfilePic, setBoolean] = useState(true)
 
     useEffect(() => {
-        if (localStorage.getItem("vendor_token")) {
+        if (isVendor) {
             getCurrentVendor().then(setCurrentVendor)
+        } else if (isHost) {
+            getCurrentHost().then(setCurrentHost)
         }
     }, [])
 
@@ -42,26 +45,59 @@ export const NavBar = () => {
 
             <div className="navbar-menu" ref={navbar}>
                 <div className="navbar-start">
-                    <Link to="/" className="navbar-item has-text-weight-semibold">Upcoming Events</Link>
-                    <Link to="/messages" className="navbar-item has-text-weight-semibold">Messages</Link>
+                    {
+                        isVendor
+                            ? <>
+                                <Link to="/" className="navbar-item has-text-weight-semibold">Upcoming Events</Link>
+                                <Link to="/messages" className="navbar-item has-text-weight-semibold">Messages</Link>
+                            </>
+                            : ""
+                    }
+                    {
+                        isHost
+                            ? <>
+                                <Link to="/" className="navbar-item has-text-weight-semibold">Vendors</Link>
+                                <Link to="/" className="navbar-item has-text-weight-semibold">Your Wedding</Link>
+                                <Link to="/" className="navbar-item has-text-weight-semibold">Messages</Link>
+                            </>
+                            : ""
+                    }
+
                 </div>
 
                 <div className="navbar-end pr-5 mr-5">
                     <div className="navbar-item has-dropdown is-hoverable">
                         {
-                            currentVendor && showProfilePic
+                            isVendor && showProfilePic
                                 ? <img id="profile-nav" src={`http://localhost:8000${currentVendor.profile_image}`} />
+                                : ""
+                        }
+                        {
+                            isHost && showProfilePic
+                                ? <img id="profile-nav" src={`http://localhost:8000${currentHost.profile_image}`} />
                                 : ""
                         }
 
                         <div className="navbar-dropdown is-right" ref={dropdown}>
-                            <a href="/vendor/profile" className="navbar-item has-text-weight-semibold">
-                                Business Profile
-                            </a>
+                            {
+                                isVendor
+                                    ? <a href="/vendor/profile" className="navbar-item has-text-weight-semibold">
+                                        Business Profile
+                                    </a>
+                                    : ""
+                            }
+                            {
+                                isHost
+                                    ? <a href="/hosts/profile" className="navbar-item has-text-weight-semibold">
+                                        Profile
+                                    </a>
+                                    : ""
+                            }
+
                             <hr className="navbar-divider" />
                             <a className="navbar-item has-text-weight-semibold" onClick={() => {
-                                localStorage.removeItem('vendor_token')
-                                localStorage.removeItem('host_token')
+                                localStorage.removeItem('wedding_token')
+                                localStorage.removeItem("is_vendor")
                                 history.push('/login')
                             }}>
                                 Logout

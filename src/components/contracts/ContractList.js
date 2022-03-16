@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { getCurrentVendor } from "../VendorManager"
+import { getCurrentVendor } from "../../managers/VendorManager"
 import Contract from "./Contract"
 
 export const ContractList = () => {

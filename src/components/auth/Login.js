@@ -18,13 +18,15 @@ export const Login = ({setIsHost, setIsVendor}) => {
         })
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res && res.is_staff) {
+                    localStorage.setItem("is_vendor", true)
                     setIsVendor(true)
                     localStorage.setItem("wedding_token", res.token)
                     history.push("/")
                 } else if (!res.is_staff) {
+                    localStorage.setItem("is_vendor", false)
                     setIsHost(true)
                     localStorage.setItem("wedding_token", res.token)
-                    history.push("/")
+                    history.push("/vendors")
                 }
                 else {
                     invalidDialog.current.showModal()

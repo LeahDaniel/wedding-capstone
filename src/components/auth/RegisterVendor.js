@@ -66,6 +66,7 @@ export const RegisterVendor = ({setIsVendor}) => {
                 .then(res => {
                     if ("token" in res) {
                         setIsVendor(true)
+                        localStorage.setItem("is_vendor", true)
                         localStorage.setItem("wedding_token", res.token)
                         history.push("/")
                     } else {
