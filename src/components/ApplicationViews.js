@@ -7,27 +7,37 @@ import MessageView from "./messages/MessageView"
 import VendorProfile from "./vendor/VendorProfile"
 
 
-export const ApplicationViews = ({isHost, isVendor}) => {
+export const ApplicationViews = ({ isHost, isVendor }) => {
 
     return (
         <>
-            <Route exact path="/">
-                <ContractList />
-            </Route>
+            {
+                isVendor
+                    ? <Route exact path="/">
+                        <ContractList />
+                    </Route>
+                    : <Route exact path="/">
+
+                    </Route>
+            }
+
             <Route exact path="/hosts/:hostId(\d+)">
-                <HostProfile isVendor={isVendor}/>
+                <HostProfile isVendor={isVendor} />
             </Route>
             <Route exact path="/hosts/profile">
-                <HostProfile isHost={isHost}/>
+                <HostProfile isHost={isHost} />
             </Route>
             <Route exact path="/messages">
-                <MessageView isVendor={isVendor} isHost={isHost}/>
+                <MessageView isVendor={isVendor} isHost={isHost} />
             </Route>
             <Route exact path="/messages/:hostId(\d+)">
-                <MessageList />
+                <MessageList isVendor={isVendor} isHost={isHost} />
             </Route>
-            <Route exact path="/vendor/profile">
-                <VendorProfile />
+            <Route exact path="/vendors/:vendorId(\d+)">
+                <VendorProfile isHost={isHost} />
+            </Route>
+            <Route exact path="/vendors/profile">
+                <VendorProfile isVendor={isVendor} />
             </Route>
         </>
     )
