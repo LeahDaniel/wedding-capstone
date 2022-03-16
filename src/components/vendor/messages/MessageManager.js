@@ -8,7 +8,7 @@ export default () => {
 
     useEffect(() => {
         getHostThreads().then(setThreads)
-            .then(getCurrentVendor).then((res) => setCurrentUserId(res.vendor?.user.id))
+            .then(getCurrentVendor).then((res) => setCurrentUserId(res.user.id))
     }, [])
 
     return (
@@ -17,20 +17,19 @@ export default () => {
             <div>
                 {
                     threads.map(thread => {
-                        return <Link
-                            key={thread.id}
-                            to={`/messages/${thread.host.id}`}
-                        >
-                            <div className="box" >
+                        return <div className="box" key={thread.id}>
+                            <Link to={`/hosts/${thread.host.id}`}>
                                 <p>{thread.host.user.first_name} {thread.host.user.last_name}</p>
+                            </Link>
+                            <Link to={`/messages/${thread.host.id}`}>
                                 <p className={
                                     currentUserId === thread.sender
                                         ? "box has-background-primary-light"
                                         : "box has-background-link-light"}>
                                     Most recent message: {thread.body}
                                 </p>
-                            </div>
-                        </Link>
+                            </Link>
+                        </div>
 
                     })
                 }
