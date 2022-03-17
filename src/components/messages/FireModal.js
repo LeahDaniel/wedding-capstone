@@ -25,7 +25,11 @@ export default ({openFireModal, setOpenFireModal, hostVendor, setHostVendor, hos
                                     })
                                 })
                                 .then(() => getMessages(host.id, vendor.id))
-                                .then(setMessages)
+                                .then((res) => {
+                                    if(setMessages){
+                                        setMessages(res)
+                                    }
+                                })
                                 .then(() => setOpenFireModal(false))
                         }}>
                             Yes

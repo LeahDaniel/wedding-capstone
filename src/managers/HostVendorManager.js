@@ -26,10 +26,8 @@ export const createHostVendor = (hostVendor) => {
         body: JSON.stringify(hostVendor)
     }
     return fetch(`http://localhost:8000/hostvendors`, fetchOptions)
-        .then((res) => {
-            res.json()
-                .then(json => getHostVendor(json.id))
-        })
+        .then((res) => res.json())
+        .then((res) => getHostVendor(res.id))
 }
 
 export const deleteHostVendor = hostVendorId => {

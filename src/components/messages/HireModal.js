@@ -1,4 +1,4 @@
-import { createHostVendor, fireHostVendor, hireHostVendor } from "../../managers/HostVendorManager"
+import { hireHostVendor } from "../../managers/HostVendorManager"
 import { createMessage, getMessages } from "../../managers/MessageManager"
 
 export default ({openHireModal, setOpenHireModal, hostVendor, setHostVendor, host, vendor, setMessages}) => {
@@ -25,7 +25,11 @@ export default ({openHireModal, setOpenHireModal, hostVendor, setHostVendor, hos
                                     })
                                 })
                                 .then(() => getMessages(host.id, vendor.id))
-                                .then(setMessages)
+                                .then((res) => {
+                                    if(setMessages){
+                                        setMessages(res)
+                                    }
+                                })
                                 .then(() => setOpenHireModal(false))
                         }}>
                             Yes

@@ -1,4 +1,4 @@
-import { createHostVendor, fireHostVendor } from "../../managers/HostVendorManager"
+import { createHostVendor } from "../../managers/HostVendorManager"
 import { createMessage, getMessages } from "../../managers/MessageManager"
 
 export default ({openRequestModal, setOpenRequestModal, setHostVendor, host, vendor, setMessages}) => {
@@ -28,7 +28,11 @@ export default ({openRequestModal, setOpenRequestModal, setHostVendor, host, ven
                                     })
                                 })
                                 .then(() => getMessages(host.id, vendor.id))
-                                .then(setMessages)
+                                .then((res) => {
+                                    if(setMessages){
+                                        setMessages(res)
+                                    }
+                                })
                                 .then(() => setOpenRequestModal(false))
                         }}>
                             Yes
