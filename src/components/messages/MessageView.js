@@ -24,25 +24,21 @@ export default ({ isVendor }) => {
             <div>
                 {
                     threads.map(thread => {
-                        return <div className="box" key={thread.id}>
-                            {
-                                isVendor
-                                    ? <Link to={`/hosts/${thread.host.id}`}>
-                                        <p>{thread.host.user.username}</p>
-                                    </Link>
-                                    : <Link to={`/vendors/${thread.vendor.id}`}>
-                                        <p>{thread.vendor.business_name}</p>
-                                    </Link>
-                            }
-                            <Link to={isVendor ?`/messages/${thread.host.id}`: `/messages/${thread.vendor.id}`}>
+                        return <Link key={thread.id} to={isVendor ? `/messages/${thread.host.id}` : `/messages/${thread.vendor.id}`}>
+                            <div className="box">
+                                {
+                                    isVendor
+                                        ? <p>{thread.host.user.username}</p>
+                                        : <p>{thread.vendor.business_name}</p>
+                                }
                                 <p className={
                                     currentUserId === thread.sender
                                         ? "box has-background-primary-light"
                                         : "box has-background-link-light"}>
                                     Most recent message: {thread.body}
                                 </p>
-                            </Link>
-                        </div>
+                            </div>
+                        </Link>
 
                     })
                 }

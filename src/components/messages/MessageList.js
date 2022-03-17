@@ -11,6 +11,7 @@ import FireModal from "./FireModal"
 import DenyModal from "./DenyModal"
 import QuitModal from "./QuitModal"
 import QuoteModal from "./QuoteModal"
+import { Link } from "react-router-dom"
 
 export default ({ isVendor }) => {
     const { vendorId } = useParams()
@@ -87,7 +88,11 @@ export default ({ isVendor }) => {
             {
                 isVendor
                     ? <>
-                        <h1 className="subtitle">Messages with {host.user?.username}</h1>
+
+                        <h1 className="subtitle">Messages with {
+                            <Link to={`/hosts/${host.id}`}>{host.user?.username}</Link>
+                        }</h1>
+
 
                         <div id="button-controller-vendor">
                             {
@@ -126,8 +131,9 @@ export default ({ isVendor }) => {
                         </div>
                     </>
                     : <>
-                        <h1 className="subtitle">Messages with {vendor.business_name}</h1>
-
+                        <Link to={`/vendors/${vendor.id}`}>
+                            <h1 className="subtitle">Messages with {vendor.business_name}</h1>
+                        </Link>
                         <div id="button-controller-host">
                             {
                                 hostVendor
