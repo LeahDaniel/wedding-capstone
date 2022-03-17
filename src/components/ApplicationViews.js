@@ -4,6 +4,7 @@ import { ContractList } from "./contracts/ContractList"
 import HostProfile from "./host/HostProfile"
 import MessageList from "./messages/MessageList"
 import MessageView from "./messages/MessageView"
+import VendorCategories from "./vendor/VendorCategories"
 import VendorProfile from "./vendor/VendorProfile"
 
 
@@ -17,7 +18,7 @@ export const ApplicationViews = ({ isVendor }) => {
                         <ContractList />
                     </Route>
                     : <Route exact path="/">
-
+                        <VendorCategories />
                     </Route>
             }
             {
@@ -42,6 +43,9 @@ export const ApplicationViews = ({ isVendor }) => {
 
             <Route exact path="/vendors/:vendorId(\d+)">
                 <VendorProfile isVendor={isVendor} />
+            </Route>
+            <Route exact path="/vendors/type/:vendorTypeId(\d+)">
+                
             </Route>
             <Route exact path="/vendors/profile">
                 <VendorProfile isVendor={isVendor} />
