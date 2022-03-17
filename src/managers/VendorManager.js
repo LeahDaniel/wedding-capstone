@@ -1,3 +1,12 @@
+export const getVendor = (id) => {
+    return fetch(`http://localhost:8000/vendors/${id}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("wedding_token")}`
+        }
+    })
+        .then(res => res.json())
+}
+
 export const getCurrentVendor = () => {
     return fetch(`http://localhost:8000/vendors/profile`, {
         headers:{

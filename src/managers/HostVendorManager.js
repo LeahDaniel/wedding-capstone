@@ -1,6 +1,6 @@
 export const getHostVendorByStakeholders = (hostId, vendorId) => {
     return fetch(`http://localhost:8000/hostvendors/contract?host=${hostId}&vendor=${vendorId}`, {
-        headers:{
+        headers: {
             "Authorization": `Token ${localStorage.getItem("wedding_token")}`
         }
     })
@@ -9,17 +9,33 @@ export const getHostVendorByStakeholders = (hostId, vendorId) => {
 
 export const getHostVendor = (hostVendorId) => {
     return fetch(`http://localhost:8000/hostvendors/${hostVendorId}`, {
-        headers:{
+        headers: {
             "Authorization": `Token ${localStorage.getItem("wedding_token")}`
         }
     })
         .then(res => res.json())
 }
 
+export const createHostVendor = (hostVendor) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("wedding_token")}`
+        },
+        body: JSON.stringify(hostVendor)
+    }
+    return fetch(`http://localhost:8000/hostvendors`, fetchOptions)
+        .then((res) => {
+            res.json()
+                .then(json => getHostVendor(json.id))
+        })
+}
+
 export const deleteHostVendor = hostVendorId => {
     return fetch(`http://localhost:8000/hostvendors/${hostVendorId}`, {
         method: "DELETE",
-        headers:{
+        headers: {
             "Authorization": `Token ${localStorage.getItem("wedding_token")}`
         }
     })
@@ -36,6 +52,17 @@ export const fireHostVendor = (hostVendorId) => {
         .then(() => getHostVendor(hostVendorId))
 }
 
+export const hireHostVendor = (hostVendorId) => {
+    return fetch(`http://localhost:8000/hostvendors/${hostVendorId}/hire`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("wedding_token")}`
+        }
+    })
+        .then(() => getHostVendor(hostVendorId))
+}
+
 export const quoteHostVendor = (hostVendorId, costPerHour) => {
     return fetch(`http://localhost:8000/hostvendors/${hostVendorId}/quote`, {
         method: "PUT",
@@ -43,7 +70,7 @@ export const quoteHostVendor = (hostVendorId, costPerHour) => {
             "Content-Type": "application/json",
             "Authorization": `Token ${localStorage.getItem("wedding_token")}`
         },
-        body: JSON.stringify({"cost_per_hour": costPerHour})
+        body: JSON.stringify({ "cost_per_hour": costPerHour })
     })
         .then(() => getHostVendor(hostVendorId))
 }

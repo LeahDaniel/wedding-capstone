@@ -4,7 +4,7 @@ import { getCurrentHost } from "../../managers/HostManager"
 import { getHostThreads, getVendorThreads } from "../../managers/MessageManager"
 import { getCurrentVendor } from "../../managers/VendorManager"
 
-export default ({ isVendor, isHost }) => {
+export default ({ isVendor }) => {
     const [threads, setThreads] = useState([])
     const [currentUserId, setCurrentUserId] = useState(null)
 
@@ -12,11 +12,11 @@ export default ({ isVendor, isHost }) => {
         if (isVendor) {
             getHostThreads().then(setThreads)
                 .then(getCurrentVendor).then((res) => setCurrentUserId(res.user.id))
-        } else if (isHost) {
+        } else {
             getVendorThreads().then(setThreads)
                 .then(getCurrentHost).then((res) => setCurrentUserId(res.user.id))
         }
-    }, [isHost, isVendor])
+    }, [isVendor])
 
     return (
         <>
@@ -30,17 +30,11 @@ export default ({ isVendor, isHost }) => {
                                     ? <Link to={`/hosts/${thread.host.id}`}>
                                         <p>{thread.host.user.username}</p>
                                     </Link>
-                                    : ""
-                            }
-                            {
-                                isHost
-                                    ? <Link to={`/vendors/${thread.vendor.id}`}>
+                                    : <Link to={`/vendors/${thread.vendor.id}`}>
                                         <p>{thread.vendor.business_name}</p>
                                     </Link>
-                                    : ""
                             }
-
-                            <Link to={`/messages/${thread.host.id}`}>
+                            <Link to={isVendor ?`/messages/${thread.host.id}`: `/messages/${thread.vendor.id}`}>
                                 <p className={
                                     currentUserId === thread.sender
                                         ? "box has-background-primary-light"

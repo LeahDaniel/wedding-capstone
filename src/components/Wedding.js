@@ -7,15 +7,14 @@ import { RegisterHost } from "./auth/RegisterHost";
 import { RegisterVendor } from "./auth/RegisterVendor";
 
 export const Wedding = () => {
-    const [isVendor, setIsVendor] = useState(false)
-    const [isHost, setIsHost] = useState(false)
+    const [isVendor, setIsVendor] = useState(null)
 
     useEffect(()=> {
         let boolean = localStorage.getItem("is_vendor")
         if(boolean === "true"){
             setIsVendor(true)
         }else if(boolean === "false") {
-            setIsHost(true)
+            setIsVendor(false)
         }
     })
 
@@ -27,9 +26,9 @@ export const Wedding = () => {
                     if (localStorage.getItem("wedding_token")) {
                         return (
                             <>
-                                <NavBar isHost={isHost} isVendor={isVendor}/>
+                                <NavBar isVendor={isVendor}/>
                                 <div className="container">
-                                    <ApplicationViews isHost={isHost} isVendor={isVendor}/>
+                                    <ApplicationViews isVendor={isVendor}/>
                                 </div>
                                 <div className="bottom"></div>
                             </>
@@ -42,10 +41,10 @@ export const Wedding = () => {
             />
 
             <Route path="/login">
-                <Login setIsHost={setIsHost} setIsVendor={setIsVendor}/>
+                <Login setIsVendor={setIsVendor}/>
             </Route>
             <Route path="/registerHost">
-                <RegisterHost setIsHost={setIsHost}/>
+                <RegisterHost setIsVendor={setIsVendor}/>
             </Route>
             <Route path="/registerVendor">
                 <RegisterVendor setIsVendor={setIsVendor}/>

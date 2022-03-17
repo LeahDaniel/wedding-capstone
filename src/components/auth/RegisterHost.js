@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { getWeddingSizes, registerHost } from "./AuthManager"
 
-export const RegisterHost = ({setIsHost}) => {
+export const RegisterHost = ({setIsVendor}) => {
     const firstName = useRef()
     const lastName = useRef()
     const username = useRef()
@@ -59,7 +59,7 @@ export const RegisterHost = ({setIsHost}) => {
             registerHost(newUser)
                 .then(res => {
                     if ("token" in res) {
-                        setIsHost(true)
+                        setIsVendor(false)
                         localStorage.setItem("is_vendor", false)
                         localStorage.setItem("wedding_token", res.token)
                         history.push("/")

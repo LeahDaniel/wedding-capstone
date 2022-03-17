@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import { getCurrentHost, getHost } from "../../managers/HostManager"
 import EditHost from "./EditHost"
 
-export default ({ isHost, isVendor }) => {
+export default ({ isVendor }) => {
     const { hostId } = useParams()
     const [host, setHost] = useState({})
     const [openEditModal, setOpenEditModal] = useState(false)
@@ -13,23 +13,23 @@ export default ({ isHost, isVendor }) => {
     useEffect(() => {
         if (isVendor) {
             getHost(hostId).then(setHost)
-        } else if (isHost) {
+        } else {
             getCurrentHost().then(setHost)
         }
-    }, [isHost, isVendor])
+    }, [isVendor])
 
     return (
         <section >
-            <EditHost openEditModal={openEditModal} setOpenEditModal={setOpenEditModal} host={host} setHost={setHost}/>
+            <EditHost openEditModal={openEditModal} setOpenEditModal={setOpenEditModal} host={host} setHost={setHost} />
             <div >
                 <img src={`http://localhost:8000${host.profile_image}`} alt='user profile image'></img>
                 <h3 >
                     {host.user?.username}
                 </h3>
                 {
-                    isHost
-                        ? <button className="button" onClick={() => setOpenEditModal(true)}>Edit Wedding</button>
-                        : ""
+                    isVendor
+                        ? ""
+                        : <button className="button" onClick={() => setOpenEditModal(true)}>Edit Wedding</button>
                 }
             </div>
             <section >

@@ -5,7 +5,7 @@ import Logo from "../../images/wedding-ring.png"
 import { getCurrentVendor } from "../../managers/VendorManager"
 import { getCurrentHost } from "../../managers/HostManager"
 
-export const NavBar = ({ isVendor, isHost}) => {
+export const NavBar = ({ isVendor }) => {
     const navbar = useRef()
     const hamburger = useRef()
     const dropdown = useRef()
@@ -17,10 +17,10 @@ export const NavBar = ({ isVendor, isHost}) => {
     useEffect(() => {
         if (isVendor) {
             getCurrentVendor().then(setCurrentVendor)
-        } else if (isHost) {
+        } else {
             getCurrentHost().then(setCurrentHost)
         }
-    }, [])
+    }, [isVendor])
 
     const showMobileNavbar = () => {
         setBoolean(!showProfilePic)
@@ -51,47 +51,34 @@ export const NavBar = ({ isVendor, isHost}) => {
                                 <Link to="/" className="navbar-item has-text-weight-semibold">Upcoming Events</Link>
                                 <Link to="/messages" className="navbar-item has-text-weight-semibold">Messages</Link>
                             </>
-                            : ""
-                    }
-                    {
-                        isHost
-                            ? <>
+                            : <>
                                 <Link to="/vendors" className="navbar-item has-text-weight-semibold">Vendors</Link>
                                 <Link to="/" className="navbar-item has-text-weight-semibold">Your Wedding</Link>
                                 <Link to="/messages" className="navbar-item has-text-weight-semibold">Messages</Link>
                             </>
-                            : ""
                     }
-
                 </div>
 
                 <div className="navbar-end pr-5 mr-5">
                     <div className="navbar-item has-dropdown is-hoverable">
                         {
-                            isVendor && showProfilePic
-                                ? <img id="profile-nav" src={`http://localhost:8000${currentVendor.profile_image}`} />
+                            showProfilePic
+                                ? <>{
+                                    isVendor
+                                        ? <img id="profile-nav" src={`http://localhost:8000${currentVendor.profile_image}`} />
+                                        : <img id="profile-nav" src={`http://localhost:8000${currentHost.profile_image}`} />
+                                }</>
                                 : ""
                         }
-                        {
-                            isHost && showProfilePic
-                                ? <img id="profile-nav" src={`http://localhost:8000${currentHost.profile_image}`} />
-                                : ""
-                        }
-
                         <div className="navbar-dropdown is-right" ref={dropdown}>
                             {
                                 isVendor
                                     ? <a href="/vendor/profile" className="navbar-item has-text-weight-semibold">
                                         Business Profile
                                     </a>
-                                    : ""
-                            }
-                            {
-                                isHost
-                                    ? <a href="/hosts/profile" className="navbar-item has-text-weight-semibold">
+                                    : <a href="/hosts/profile" className="navbar-item has-text-weight-semibold">
                                         Profile
                                     </a>
-                                    : ""
                             }
 
                             <hr className="navbar-divider" />
