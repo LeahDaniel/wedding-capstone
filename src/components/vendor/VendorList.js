@@ -1,20 +1,47 @@
 import React, { useState, useEffect } from "react"
-import { getCurrentVendor } from "../../managers/VendorManager"
+import { useParams } from "react-router-dom"
+import { getVendors } from "../../managers/VendorManager"
 import Vendor from "./Vendor"
+import VendorFilters from "./VendorFilters"
 
 export const VendorList = () => {
+    const {vendorTypeId} = useParams()
     const [vendors, setVendors] = useState([])
+    const [userFilters, setUserFilters] = useState({
+        maxPrice: "",
+        minPrice: "",
+        rating: 0
+    })
 
     useEffect(() => {
-        getCurrentVendor().then(setVendor)
-    }, [])
+        getVendors({type: vendorTypeId})
+            .then(setVendors)
+    }, [vendorTypeId])
+
+    useEffect(() => {
+        let filterObj = {type: vendorTypeId}
+
+        if(userFilters.maxPrice !== ""){
+            filterObj.maxPrice = userFilters.maxPrice
+        }
+        if(userFilters.minPrice !== ""){
+            filterObj.minPrice = userFilters.minPrice
+        }
+        if(userFilters.rating !== 0){
+            filterObj.rating = userFilters.rating
+        }
+
+        getVendors(filterObj)
+            .then(setVendors)
+
+    }, [userFilters])
 
     return (
         <>
-            <h1 className="subtitle">Your Upcoming Events</h1>
-            <div>
+            <VendorFilters userFilters={userFilters} setUserFilters={setUserFilters} />
+            <div className="m-5">
                 {
-                    vendor.vendors?.map(vendor => <Vendor key={vendor.id} vendor={vendor} />)
+                    vendors.map(vendor => <Vendor key={vendor.id} vendor={vendor} />)
                 }
             </div>
         </>

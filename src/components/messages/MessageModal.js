@@ -9,8 +9,10 @@ export default ({ openMessageModal, setOpenMessageModal, vendor }) => {
     const [host, setHost] = useState()
 
     useEffect(() => {
-        getCurrentHost().then(setHost)
-    }, [])
+        if(openMessageModal){
+            getCurrentHost().then(setHost)
+        }
+    }, [openMessageModal])
 
     const handleSubmit = (e) => {
         e.preventDefault()

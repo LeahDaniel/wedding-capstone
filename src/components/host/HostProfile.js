@@ -13,7 +13,7 @@ export default ({ isVendor }) => {
     useEffect(() => {
         if (isVendor) {
             getHost(hostId).then(setHost)
-        } else {
+        } else if (isVendor === false){
             getCurrentHost().then(setHost)
         }
     }, [isVendor])
@@ -24,7 +24,7 @@ export default ({ isVendor }) => {
             <div >
                 <img src={`http://localhost:8000${host.profile_image}`} alt='user profile image'></img>
                 <h3 >
-                    {host.user?.username}
+                    {host.user?.first_name} {host.user?.last_name}
                 </h3>
                 {
                     isVendor

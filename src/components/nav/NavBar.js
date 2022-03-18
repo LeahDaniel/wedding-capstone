@@ -17,7 +17,7 @@ export const NavBar = ({ isVendor }) => {
     useEffect(() => {
         if (isVendor) {
             getCurrentVendor().then(setCurrentVendor)
-        } else {
+        } else if (isVendor === false){
             getCurrentHost().then(setCurrentHost)
         }
     }, [isVendor])
@@ -52,8 +52,8 @@ export const NavBar = ({ isVendor }) => {
                                 <Link to="/messages" className="navbar-item has-text-weight-semibold">Messages</Link>
                             </>
                             : <>
-                                <Link to="/vendors" className="navbar-item has-text-weight-semibold">Vendors</Link>
-                                <Link to="/" className="navbar-item has-text-weight-semibold">Your Wedding</Link>
+                                <Link to="/" className="navbar-item has-text-weight-semibold">Vendors</Link>
+                                <Link to="/hosts/wedding" className="navbar-item has-text-weight-semibold">Your Wedding</Link>
                                 <Link to="/messages" className="navbar-item has-text-weight-semibold">Messages</Link>
                             </>
                     }
@@ -73,7 +73,7 @@ export const NavBar = ({ isVendor }) => {
                         <div className="navbar-dropdown is-right" ref={dropdown}>
                             {
                                 isVendor
-                                    ? <a href="/vendor/profile" className="navbar-item has-text-weight-semibold">
+                                    ? <a href="/vendors/profile" className="navbar-item has-text-weight-semibold">
                                         Business Profile
                                     </a>
                                     : <a href="/hosts/profile" className="navbar-item has-text-weight-semibold">

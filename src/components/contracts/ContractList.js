@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react"
-import { getCurrentVendor } from "../../managers/VendorManager"
+import { getUpcomingContracts } from "../../managers/HostVendorManager"
 import Contract from "./Contract"
 
 export const ContractList = () => {
-    const [vendor, setVendor] = useState({})
+    const [contracts, setContracts] = useState([])
 
     useEffect(() => {
-        getCurrentVendor().then(setVendor)
+        getUpcomingContracts().then(setContracts)
     }, [])
 
     return (
@@ -14,7 +14,7 @@ export const ContractList = () => {
             <h1 className="subtitle">Your Upcoming Events</h1>
             <div>
                 {
-                    vendor.contracts?.map(contract => <Contract key={contract.id} contract={contract} />)
+                    contracts.map(contract => <Contract key={contract.id} contract={contract} />)
                 }
             </div>
         </>

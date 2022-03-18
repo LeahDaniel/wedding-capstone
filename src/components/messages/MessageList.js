@@ -38,7 +38,7 @@ export default ({ isVendor }) => {
                     setCurrentUserId(res.user.id)
                 })
 
-        } else {
+        } else if (isVendor === false) {
             getVendor(vendorId)
                 .then(setVendor)
                 .then(getCurrentHost)

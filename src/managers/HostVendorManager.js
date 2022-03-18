@@ -7,6 +7,24 @@ export const getHostVendorByStakeholders = (hostId, vendorId) => {
         .then(res => res.json())
 }
 
+export const getUpcomingContracts = () => {
+    return fetch(`http://localhost:8000/hostvendors`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("wedding_token")}`
+        }
+    })
+        .then(res => res.json())
+}
+
+export const getHiredHostVendors = () => {
+    return fetch(`http://localhost:8000/hostvendors`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("wedding_token")}`
+        }
+    })
+        .then(res => res.json())
+}
+
 export const getHostVendor = (hostVendorId) => {
     return fetch(`http://localhost:8000/hostvendors/${hostVendorId}`, {
         headers: {
@@ -15,7 +33,6 @@ export const getHostVendor = (hostVendorId) => {
     })
         .then(res => res.json())
 }
-
 export const createHostVendor = (hostVendor) => {
     const fetchOptions = {
         method: "POST",

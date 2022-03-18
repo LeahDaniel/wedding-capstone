@@ -22,13 +22,12 @@ export const Login = ({setIsVendor}) => {
                     setIsVendor(true)
                     localStorage.setItem("wedding_token", res.token)
                     history.push("/")
-                } else if (!res.is_staff) {
+                } else if ("valid" in res && res.valid && "token" in res && !res.is_staff) {
                     localStorage.setItem("is_vendor", false)
                     setIsVendor(false)
                     localStorage.setItem("wedding_token", res.token)
-                    history.push("/vendors")
-                }
-                else {
+                    history.push("/")
+                } else {
                     invalidDialog.current.showModal()
                 }
             })

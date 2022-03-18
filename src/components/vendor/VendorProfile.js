@@ -3,12 +3,13 @@ import StarPicker from "react-star-picker"
 import { useParams } from "react-router-dom"
 import { getCurrentVendor, getVendor } from "../../managers/VendorManager"
 import EditVendor from "./EditVendor"
-import MessageModal from "./MessageModal"
+import MessageModal from "../messages/MessageModal"
 import { getCurrentHost } from "../../managers/HostManager"
 import { getHostVendorByStakeholders } from "../../managers/HostVendorManager"
 import HireModal from "../messages/HireModal"
 import RequestModal from "../messages/RequestModal"
 import FireModal from "../messages/FireModal"
+import ReviewList from "../reviews/ReviewList"
 
 export default ({ isVendor }) => {
     const { vendorId } = useParams()
@@ -25,7 +26,7 @@ export default ({ isVendor }) => {
     useEffect(() => {
         if (isVendor) {
             getCurrentVendor().then(setVendor)
-        } else {
+        } else if (isVendor === false) {
             getVendor(vendorId).then(setVendor)
                 .then(getCurrentHost).then(setHost)
         }
@@ -45,7 +46,8 @@ export default ({ isVendor }) => {
     }, [isVendor, host, vendor])
 
     return (
-        <div className="p-5">
+        <div className="is-flex is-justify-content-center">
+
             <HireModal openHireModal={openHireModal} setOpenHireModal={setOpenHireModal}
                 hostVendor={hostVendor} setHostVendor={setHostVendor}
                 host={host} vendor={vendor} />
@@ -59,71 +61,86 @@ export default ({ isVendor }) => {
                 vendor={vendor} setVendor={setVendor} />
             <MessageModal openMessageModal={openMessageModal} setOpenMessageModal={setOpenMessageModal}
                 vendor={vendor} />
+            <div className="column is-10 card p-5">
 
-            <img src={`http://localhost:8000${vendor.profile_image}`} />
-            <h1 className="subtitle">{vendor.business_name}</h1>
-            {
-                isVendor
-                    ? <button className="button" onClick={() => setOpenEditModal(true)}>Edit Business</button>
-                    : <button className="button" onClick={() => setOpenMessageModal(true)}>Message</button>
-            }
-            {
-                hostVendor
-                    ? <>{
-                        hostVendor.cost_per_hour
-                            ? <>{
-                                hostVendor.hired
-                                    ? <>{
-                                        hostVendor.fired
-                                            ? ""
-                                            : <button
-                                                className="button"
-                                                onClick={() => setOpenFireModal(true)}>
-                                                Fire Vendor
-                                            </button>
-                                    }</>
-                                    : <button
-                                        className="button"
-                                        onClick={() => setOpenHireModal(true)}>
-                                        Accept Quote and Hire
-                                    </button>
-                            }
-                            </>
-                            : ""
-                    }</>
-                    : <button
-                        className='button'
-                        onClick={() => setOpenRequestModal(true)}>
-                        Request a quote
-                    </button>
-            }
-
-            <StarPicker value={vendor.average_rating} disabled={true} halfStars />
-            <div>
-                Category: {vendor.vendor_type?.label}
-            </div>
-            <div>
-                Years in business: {vendor.years_in_business}
-            </div>
-            <div>
-                Avg cost per hr: ${vendor.average_cost}
-            </div>
-            <div>
-                Number times hired: {vendor.total_hired_count}
-            </div>
-            <div>
-                Description: {vendor.description}
-            </div>
-            <div className="box">
-                Customer Reviews
-                {
-                    vendor.vendor_reviews?.map(review => {
-                        return <div key={review.id} className="message">
-                            {review.body}
-                            <p>- {review.host.user.username}</p>
+                <div className="card-content">
+                    <div className="media">
+                        <div className="media-left mx-5 image is-160x160">
+                            <img className="is-rounded" src={`http://localhost:8000${vendor.profile_image}`} />
                         </div>
-                    })
+                        <div className="media-content mx-5 px-5 ">
+                            <h1 className="title py-1 m-0">{vendor.business_name}</h1>
+                            <StarPicker className="py-1" value={vendor.average_rating} disabled={true} halfStars />
+                            <div className="py-1 is-size-5">
+                                Category: {vendor.vendor_type?.label}
+                            </div>
+                            <div className="py-1 is-size-5">
+                                Years in business: {vendor.years_in_business}
+                            </div>
+                            {
+                                vendor.average_cost
+                                    ? <div className="py-1 is-size-5">
+                                        Avg $/hr: {vendor.average_cost}
+                                    </div>
+                                    : ""
+                            }
+                            <div className="py-1 is-size-5">
+                                Total customers: {vendor.total_hired_count}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="box">
+                        {vendor.description}
+                    </div>
+                    <div className="is-flex is-justify-content-center ">
+
+                        {
+                            isVendor
+                                ? <button className="button mx-4" onClick={() => setOpenEditModal(true)}>Edit Business</button>
+                                : <>
+                                    <button className="button mx-4" onClick={() => setOpenMessageModal(true)}>Message</button>
+                                    {
+                                        hostVendor
+                                            ? <>{
+                                                hostVendor.cost_per_hour
+                                                    ? <>{
+                                                        hostVendor.hired
+                                                            ? <>{
+                                                                hostVendor.fired
+                                                                    ? ""
+                                                                    : <button
+                                                                        className="button"
+                                                                        onClick={() => setOpenFireModal(true)}>
+                                                                        Fire Vendor
+                                                                    </button>
+                                                            }</>
+                                                            : <button
+                                                                className="button"
+                                                                onClick={() => setOpenHireModal(true)}>
+                                                                Accept Quote and Hire
+                                                            </button>
+                                                    }
+                                                    </>
+                                                    : ""
+                                            }</>
+                                            : <button
+                                                className='button mx-4'
+                                                onClick={() => setOpenRequestModal(true)}>
+                                                Request a quote
+                                            </button>
+                                    }
+                                </>
+                        }
+
+                    </div>
+
+                </div>
+                {
+                    vendor.vendor_reviews?.length > 0
+                        ? <ReviewList vendor={vendor} setVendor={setVendor} vendorReviews={vendor.vendor_reviews} host={host} />
+                        : ""
                 }
+
             </div>
         </div>
     )

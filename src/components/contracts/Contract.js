@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 export default ({ contract }) => {
     const date = new Date(contract.host.date).toLocaleDateString()
-    const time = new Date('1970-01-01T' + contract.host.time + 'Z').toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true})
+    const time = new Date('1970-01-01T' + contract.host.time).toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true})
 
     return (
         <Link to={`/hosts/${contract.host.id}`}>
