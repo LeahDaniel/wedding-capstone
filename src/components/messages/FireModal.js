@@ -1,8 +1,9 @@
 import { fireHostVendor } from "../../managers/HostVendorManager"
+import {useHistory} from 'react-router-dom'
 import { createMessage, getMessages } from "../../managers/MessageManager"
 
-export default ({openFireModal, setOpenFireModal, hostVendor, setHostVendor, host, vendor, setMessages}) => {
-
+export default ({ openFireModal, setOpenFireModal, hostVendor, setHostVendor, host, vendor, setMessages }) => {
+    const history = useHistory()
     return (
         <>
             <div id="edit-modal" className={openFireModal ? "modal is-active" : "modal"}>
@@ -23,13 +24,16 @@ export default ({openFireModal, setOpenFireModal, hostVendor, setHostVendor, hos
                                         vendor: vendor.id,
                                         body: `${host.user.first_name} ${host.user.last_name} has fired you from their event. Please reach out to them with any contract issues.`
                                     })
+                                        .then(() => {
+                                            if (setMessages) {
+                                                getMessages(host.id, vendor.id)
+                                                    .then(setMessages)
+                                            }else {
+                                                history.push('/messages')
+                                            }
+                                        })
                                 })
-                                .then(() => getMessages(host.id, vendor.id))
-                                .then((res) => {
-                                    if(setMessages){
-                                        setMessages(res)
-                                    }
-                                })
+
                                 .then(() => setOpenFireModal(false))
                         }}>
                             Yes

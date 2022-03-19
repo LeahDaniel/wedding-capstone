@@ -1,8 +1,10 @@
+import { useHistory } from "react-router-dom"
 import { createHostVendor } from "../../managers/HostVendorManager"
 import { createMessage, getMessages } from "../../managers/MessageManager"
 
 export default ({openRequestModal, setOpenRequestModal, setHostVendor, host, vendor, setMessages}) => {
-
+    const history = useHistory()
+    
     return (
         <>
             <div id="edit-modal" className={openRequestModal ? "modal is-active" : "modal"}>
@@ -26,12 +28,14 @@ export default ({openRequestModal, setOpenRequestModal, setHostVendor, host, ven
                                         It will be held at ${host.street_address}, ${host.city}, ${host.state} ${host.zip_code}.
                                         The guest count will be in the ${host.wedding_size.label} range.`
                                     })
-                                })
-                                .then(() => getMessages(host.id, vendor.id))
-                                .then((res) => {
-                                    if(setMessages){
-                                        setMessages(res)
-                                    }
+                                    .then(() => {
+                                        if (setMessages) {
+                                            getMessages(host.id, vendor.id)
+                                                .then(setMessages)
+                                        } else {
+                                            history.push('/messages')
+                                        }
+                                    })
                                 })
                                 .then(() => setOpenRequestModal(false))
                         }}>

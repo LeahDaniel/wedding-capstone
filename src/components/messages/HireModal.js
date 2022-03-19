@@ -1,8 +1,10 @@
+import { useHistory } from "react-router-dom"
 import { hireHostVendor } from "../../managers/HostVendorManager"
 import { createMessage, getMessages } from "../../managers/MessageManager"
 
 export default ({openHireModal, setOpenHireModal, hostVendor, setHostVendor, host, vendor, setMessages}) => {
-
+    const history = useHistory()
+    
     return (
         <>
             <div id="edit-modal" className={openHireModal ? "modal is-active" : "modal"}>
@@ -23,12 +25,14 @@ export default ({openHireModal, setOpenHireModal, hostVendor, setHostVendor, hos
                                         vendor: vendor.id,
                                         body: `${host.user.first_name} ${host.user.last_name} has hired you for their event.`
                                     })
-                                })
-                                .then(() => getMessages(host.id, vendor.id))
-                                .then((res) => {
-                                    if(setMessages){
-                                        setMessages(res)
-                                    }
+                                    .then(() => {
+                                        if (setMessages) {
+                                            getMessages(host.id, vendor.id)
+                                                .then(setMessages)
+                                        }else {
+                                            history.push('/messages')
+                                        }
+                                    })
                                 })
                                 .then(() => setOpenHireModal(false))
                         }}>
