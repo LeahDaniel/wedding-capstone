@@ -21,18 +21,22 @@ export const VendorList = () => {
     useEffect(() => {
         let filterObj = {type: vendorTypeId}
 
-        if(userFilters.maxPrice !== ""){
-            filterObj.maxPrice = userFilters.maxPrice
-        }
-        if(userFilters.minPrice !== ""){
-            filterObj.minPrice = userFilters.minPrice
-        }
         if(userFilters.rating !== 0){
             filterObj.rating = userFilters.rating
         }
 
         getVendors(filterObj)
-            .then(setVendors)
+            .then((res)=> {
+                let newArray = [...res]
+                if(userFilters.maxPrice !== ""){
+                    newArray = newArray.filter(vendor => vendor.average_cost <= parseInt(userFilters.maxPrice))
+                }
+                if(userFilters.minPrice !== ""){
+                    newArray = newArray.filter(vendor => vendor.average_cost >= parseInt(userFilters.minPrice))
+                }
+                setVendors(newArray)
+            })
+                
 
     }, [userFilters])
 

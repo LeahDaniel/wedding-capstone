@@ -26,7 +26,7 @@ export default ({ host, vendor, setMessages }) => {
                 </div>
             </fieldset>
 
-            <fieldset className="field mb-5">
+            <fieldset className="field is-flex is-justify-content-right mb-5">
                 <button className="button is-link" type="submit">Send</button>
             </fieldset>
         </form>

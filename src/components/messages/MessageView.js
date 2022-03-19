@@ -20,7 +20,7 @@ export default ({ isVendor }) => {
 
     return (
         <div className="is-flex is-justified-content-center is-flex-direction-column">
-            <h1 className="subtitle">Your Message Threads</h1>
+            <h1 className="is-size-4 has-text-centered mt-5">Your Message Threads</h1>
             <div>
                 {
                     threads.map(thread => {
@@ -28,14 +28,14 @@ export default ({ isVendor }) => {
                             <div className="box columns is-flex m-5">
                                 {
                                     isVendor
-                                        ? <p className="column is-3">{thread.host.user.username}</p>
-                                        : <p className="column is-3">{thread.vendor.business_name}</p>
+                                        ? <p className="column is-3 ml-2 is-size-5">{thread.host.user.username}</p>
+                                        : <p className="column is-3 ml-2 is-size-5">{thread.vendor.business_name}</p>
                                 }
                                 <div className="column is-2"></div>
                                 <p className={
                                     currentUserId === thread.sender
-                                        ? "box has-background-primary-light column is-6"
-                                        : "box has-background-link-light column is-6"}>
+                                        ? "box has-background-primary-light column is-6 has-text-right"
+                                        : "box has-background-link-light column is-6 has-text-left"}>
                                     {thread.body}
                                 </p>
                                 <div className="column is-2"></div>

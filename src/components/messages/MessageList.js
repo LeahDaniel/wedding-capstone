@@ -66,7 +66,7 @@ export default ({ isVendor }) => {
     }, [host, vendor])
 
     return (
-        <>
+        <div className="is-flex has-text-centered is-justified-content-center is-flex-direction-column">
             <HireModal openHireModal={openHireModal} setOpenHireModal={setOpenHireModal}
                 hostVendor={hostVendor} setHostVendor={setHostVendor}
                 host={host} vendor={vendor} setMessages={setMessages} />
@@ -89,12 +89,10 @@ export default ({ isVendor }) => {
                 isVendor
                     ? <>
 
-                        <h1 className="subtitle">Messages with {
-                            <Link to={`/hosts/${host.id}`}>{host.user?.username}</Link>
-                        }</h1>
+                        <h1  className="is-size-3 m-4"> Messages with{<Link to={`/hosts/${host.id}`}>{host.user?.username}</Link>}</h1>
 
 
-                        <div id="button-controller-vendor">
+                        <div id="button-controller-vendor" className="mb-5">
                             {
                                 hostVendor
                                     ? <>{
@@ -131,10 +129,10 @@ export default ({ isVendor }) => {
                         </div>
                     </>
                     : <>
-                        <Link to={`/vendors/${vendor.id}`}>
-                            <h1 className="subtitle">Messages with {vendor.business_name}</h1>
-                        </Link>
-                        <div id="button-controller-host">
+
+                        <h1 className="is-size-3 m-4">Messages with  <Link to={`/vendors/${vendor.id}`}>{vendor.business_name}</Link></h1>
+
+                        <div id="button-controller-host" className="mb-5">
                             {
                                 hostVendor
                                     ? <>{
@@ -169,13 +167,13 @@ export default ({ isVendor }) => {
                     </>
             }
 
-            <div className="box">
+            <div className="box column is-10 is-flex is-align-self-center is-flex-direction-column">
                 {
                     messages.map(message => {
                         return <div key={message.id} className={
                             currentUserId === message.sender_id
-                                ? "box has-background-info has-text-white"
-                                : "box has-background-light"
+                                ? "box has-background-info is-align-self-flex-end has-text-white has-text-left column is-4 mr-5"
+                                : "box has-background-light  is-align-self-flex-start has-text-left column is-4 ml-5"
                         }>
                             {message.body}
                         </div>
@@ -183,6 +181,6 @@ export default ({ isVendor }) => {
                 }
                 <MessageForm vendor={vendor} host={host} setMessages={setMessages} />
             </div>
-        </>
+        </div>
     )
 }

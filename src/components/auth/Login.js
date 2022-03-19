@@ -43,7 +43,7 @@ export const Login = ({setIsVendor}) => {
                 <h1 className="title">Wedding Planning</h1>
                 <h2 className="subtitle pt-2">Please sign in</h2>
                 <fieldset className="field mb-5">
-                    <label htmlFor="inputUsername" className="label"> Username address </label>
+                    <label htmlFor="inputUsername" className="label"> Username</label>
                     <div className="control">
                         <input ref={username} type="username" id="username" className="input" placeholder="Username address" required autoFocus />
                     </div>
