@@ -9,13 +9,22 @@ export const MessageView = ({ isVendor }) => {
     const [currentUserId, setCurrentUserId] = useState(null)
 
     useEffect(() => {
-        if (isVendor) {
-            getHostThreads().then(setThreads)
-                .then(getCurrentVendor).then((res) => setCurrentUserId(res.user.id))
-        } else if (isVendor === false) {
-            getVendorThreads().then(setThreads)
-                .then(getCurrentHost).then((res) => setCurrentUserId(res.user.id))
+        const reloadResources = () => {
+            if (isVendor) {
+                getHostThreads().then(setThreads)
+                    .then(getCurrentVendor).then((res) => setCurrentUserId(res.user.id))
+            } else if (isVendor === false) {
+                getVendorThreads().then(setThreads)
+                    .then(getCurrentHost).then((res) => setCurrentUserId(res.user.id))
+            }
         }
+
+        reloadResources()
+        const interval = setInterval(() => reloadResources(), 8000)
+        return () => {
+            clearInterval(interval);
+        }
+
     }, [isVendor])
 
     return (

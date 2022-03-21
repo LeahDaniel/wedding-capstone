@@ -4,13 +4,13 @@ import { getCurrentHost, getHost } from "../../managers/HostManager"
 import { getHostVendorByStakeholders } from "../../managers/HostVendorManager"
 import { getMessages } from "../../managers/MessageManager"
 import { getCurrentVendor, getVendor } from "../../managers/VendorManager"
-import {HireModal} from "./HireModal"
-import {MessageForm} from "./MessageForm"
-import {RequestModal} from "./RequestModal"
-import {FireModal} from "./FireModal"
-import {DenyModal} from "./DenyModal"
-import {QuitModal} from "./QuitModal"
-import {QuoteModal} from "./QuoteModal"
+import { HireModal } from "./HireModal"
+import { MessageForm } from "./MessageForm"
+import { RequestModal } from "./RequestModal"
+import { FireModal } from "./FireModal"
+import { DenyModal } from "./DenyModal"
+import { QuitModal } from "./QuitModal"
+import { QuoteModal } from "./QuoteModal"
 import { Link } from "react-router-dom"
 
 export const MessageList = ({ isVendor }) => {
@@ -51,7 +51,7 @@ export const MessageList = ({ isVendor }) => {
     }, [vendorId, hostId, isVendor])
 
     useEffect(() => {
-        if (host.id && vendor.id) {
+        const reloadResources = () => {
             getHostVendorByStakeholders(host.id, vendor.id)
                 .then((res) => {
                     if (res.found === false) {
@@ -62,6 +62,14 @@ export const MessageList = ({ isVendor }) => {
                 })
                 .then(() => getMessages(host.id, vendor.id))
                 .then(setMessages)
+        }
+
+        if (host.id && vendor.id) {
+            reloadResources()
+            const interval = setInterval(() => reloadResources(), 8000)
+            return () => {
+                clearInterval(interval);
+            }
         }
     }, [host, vendor])
 
@@ -89,7 +97,7 @@ export const MessageList = ({ isVendor }) => {
                 isVendor
                     ? <>
 
-                        <h1  className="is-size-3 m-4"> Messages with {<Link to={`/hosts/${host.id}`}>{host.user?.username}</Link>}</h1>
+                        <h1 className="is-size-3 m-4"> Messages with {<Link to={`/hosts/${host.id}`}>{host.user?.username}</Link>}</h1>
 
 
                         <div id="button-controller-vendor" className="mb-5">
