@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react"
 import { createReview, editReview } from "../../managers/ReviewAndRatingManager"
 import { getVendor } from "../../managers/VendorManager"
 
-export default ({ openReviewModal, setOpenReviewModal, review, vendor, setVendor, setReview }) => {
+export const ReviewModal = ({ openReviewModal, setOpenReviewModal, review, vendor, setVendor, setReview }) => {
     const reviewInput = useRef()
 
     useEffect(() => {

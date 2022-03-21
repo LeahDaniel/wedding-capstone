@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { getWeddingSizes } from "../auth/AuthManager"
 import { updateCurrentHost } from "../../managers/HostManager"
 
-export default ({ openEditModal, setOpenEditModal, host, setHost }) => {
+export const EditHost = ({ openEditModal, setOpenEditModal, host, setHost }) => {
     const weddingSizeId = useRef()
     const date = useRef()
     const time = useRef()

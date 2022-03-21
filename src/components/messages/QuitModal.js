@@ -1,7 +1,7 @@
 import { fireHostVendor } from "../../managers/HostVendorManager"
 import { createMessage, getMessages } from "../../managers/MessageManager"
 
-export default ({openQuitModal, setOpenQuitModal, hostVendor, setHostVendor, host, vendor, setMessages}) => {
+export const QuitModal = ({ openQuitModal, setOpenQuitModal, hostVendor, setHostVendor, host, vendor, setMessages }) => {
 
     return (
         <>
@@ -23,9 +23,9 @@ export default ({openQuitModal, setOpenQuitModal, hostVendor, setHostVendor, hos
                                         vendor: vendor.id,
                                         body: `${vendor.business_name} has withdrawn from your event and cannot be hired again.`
                                     })
+                                        .then(() => getMessages(host.id, vendor.id))
+                                        .then(setMessages)
                                 })
-                                .then(() => getMessages(host.id, vendor.id))
-                                .then(setMessages)
                                 .then(() => setOpenQuitModal(false))
                         }}>
                             Yes

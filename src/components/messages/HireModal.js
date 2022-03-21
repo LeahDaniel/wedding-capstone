@@ -2,7 +2,7 @@ import { useHistory } from "react-router-dom"
 import { hireHostVendor } from "../../managers/HostVendorManager"
 import { createMessage, getMessages } from "../../managers/MessageManager"
 
-export default ({openHireModal, setOpenHireModal, hostVendor, setHostVendor, host, vendor, setMessages}) => {
+export const HireModal = ({openHireModal, setOpenHireModal, hostVendor, setHostVendor, host, vendor, setMessages}) => {
     const history = useHistory()
     
     return (

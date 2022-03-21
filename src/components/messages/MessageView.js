@@ -4,7 +4,7 @@ import { getCurrentHost } from "../../managers/HostManager"
 import { getHostThreads, getVendorThreads } from "../../managers/MessageManager"
 import { getCurrentVendor } from "../../managers/VendorManager"
 
-export default ({ isVendor }) => {
+export const MessageView = ({ isVendor }) => {
     const [threads, setThreads] = useState([])
     const [currentUserId, setCurrentUserId] = useState(null)
 

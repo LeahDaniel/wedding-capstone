@@ -1,7 +1,7 @@
 import { deleteHostVendor } from "../../managers/HostVendorManager"
 import { createMessage, getMessages } from "../../managers/MessageManager"
 
-export default ({openDenyModal, setOpenDenyModal, hostVendor, setHostVendor, host, vendor, setMessages}) => {
+export const DenyModal = ({ openDenyModal, setOpenDenyModal, hostVendor, setHostVendor, host, vendor, setMessages }) => {
 
     return (
         <>
@@ -22,9 +22,10 @@ export default ({openDenyModal, setOpenDenyModal, hostVendor, setHostVendor, hos
                                         vendor: vendor.id,
                                         body: `${vendor.business_name} has denied your request for a quote.`
                                     })
+                                        .then(() => getMessages(host.id, vendor.id))
+                                        .then(setMessages)
                                 })
-                                .then(() => getMessages(host.id, vendor.id))
-                                .then(setMessages)
+
                                 .then(() => setHostVendor(null))
                                 .then(() => setOpenDenyModal(false))
                         }}>

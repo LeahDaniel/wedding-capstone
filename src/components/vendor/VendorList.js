@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { getVendors } from "../../managers/VendorManager"
-import Vendor from "./Vendor"
-import VendorFilters from "./VendorFilters"
+import {Vendor} from "./Vendor"
+import {VendorFilters} from "./VendorFilters"
 
 export const VendorList = () => {
     const {vendorTypeId} = useParams()
@@ -38,7 +38,7 @@ export const VendorList = () => {
             })
                 
 
-    }, [userFilters])
+    }, [userFilters, vendorTypeId])
 
     return (
         <>

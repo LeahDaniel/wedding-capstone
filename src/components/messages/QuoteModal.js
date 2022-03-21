@@ -2,7 +2,7 @@ import { useRef } from "react"
 import { quoteHostVendor } from "../../managers/HostVendorManager"
 import { createMessage, getMessages } from "../../managers/MessageManager"
 
-export default ({openQuoteModal, setOpenQuoteModal, hostVendor, setHostVendor, host, vendor, setMessages}) => {
+export const QuoteModal = ({ openQuoteModal, setOpenQuoteModal, hostVendor, setHostVendor, host, vendor, setMessages }) => {
     const costPerHour = useRef()
 
     return (
@@ -29,11 +29,10 @@ export default ({openQuoteModal, setOpenQuoteModal, hostVendor, setHostVendor, h
                                         vendor: vendor.id,
                                         body: `${vendor.business_name} has sent you
                                         a quote of $${res.cost_per_hour}. Accept the quote with the button above to continue.`
-                                    })
+                                    }).then(() => getMessages(host.id, vendor.id))
+                                        .then(setMessages)
                                     setHostVendor(res)
                                 })
-                                .then(() => getMessages(host.id, vendor.id))
-                                .then(setMessages)
                                 .then(() => setOpenQuoteModal(false))
                         }}>
                             Submit

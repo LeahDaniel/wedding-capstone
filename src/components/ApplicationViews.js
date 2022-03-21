@@ -1,13 +1,13 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { ContractList } from "./contracts/ContractList"
-import HostProfile from "./host/HostProfile"
-import MessageList from "./messages/MessageList"
-import MessageView from "./messages/MessageView"
-import VendorCategories from "./vendor/VendorCategories"
+import {HostProfile} from "./host/HostProfile"
+import {MessageList} from "./messages/MessageList"
+import {MessageView} from "./messages/MessageView"
+import {VendorCategories} from "./vendor/VendorCategories"
 import { VendorList } from "./vendor/VendorList"
-import VendorProfile from "./vendor/VendorProfile"
-import WeddingDetails from "./wedding/WeddingDetails"
+import {VendorProfile} from "./vendor/VendorProfile"
+import {WeddingDetails} from "./wedding/WeddingDetails"
 
 
 export const ApplicationViews = ({ isVendor }) => {

@@ -2,7 +2,7 @@ import React, { useRef } from "react"
 import { createMessage, getMessages } from "../../managers/MessageManager"
 
 
-export default ({ host, vendor, setMessages }) => {
+export const MessageForm = ({ host, vendor, setMessages }) => {
     const body = useRef()
 
     const handleSubmit = (e) => {

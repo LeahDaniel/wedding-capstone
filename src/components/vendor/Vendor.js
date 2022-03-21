@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import StarPicker from "react-star-picker"
 
-export default ({ vendor }) => {
+export const Vendor = ({ vendor }) => {
     return (
         <Link className="m-3 columns is-flex is-justify-content-center" to={`/vendors/${vendor.id}`}>
             <div className="card m-3 column is-half">
@@ -9,7 +9,7 @@ export default ({ vendor }) => {
                     <div className="media">
                         <div className="media-left">
                             <figure className="image is-128x128">
-                                <img className="image" src={`http://localhost:8000${vendor.profile_image}`} />
+                                <img className="image" src={`http://localhost:8000${vendor.profile_image}`} alt="vendor profile"/>
                             </figure>
                         </div>
                         <div className="media-content">

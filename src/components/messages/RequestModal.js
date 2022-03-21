@@ -1,9 +1,20 @@
+import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import { createHostVendor } from "../../managers/HostVendorManager"
 import { createMessage, getMessages } from "../../managers/MessageManager"
 
-export default ({openRequestModal, setOpenRequestModal, setHostVendor, host, vendor, setMessages}) => {
+export const RequestModal = ({openRequestModal, setOpenRequestModal, setHostVendor, host, vendor, setMessages}) => {
     const history = useHistory()
+    const [date, setDate] = useState("")
+    const [time, setTime] = useState("")
+
+    useEffect(() => {
+        const date = new Date(host.date).toLocaleDateString()
+        const time = new Date('1970-01-01T' + host.time).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+
+        setDate(date)
+        setTime(time)
+    }, [host])
     
     return (
         <>
@@ -24,7 +35,7 @@ export default ({openRequestModal, setOpenRequestModal, setHostVendor, host, ven
                                         host: host.id,
                                         vendor: vendor.id,
                                         body: `${host.user.first_name} ${host.user.last_name} has requested a quote for your services.
-                                        Their wedding is at ${host.time} on ${host.date}. 
+                                        Their wedding is at ${time} on ${date}. 
                                         It will be held at ${host.street_address}, ${host.city}, ${host.state} ${host.zip_code}.
                                         The guest count will be in the ${host.wedding_size.label} range.`
                                     })

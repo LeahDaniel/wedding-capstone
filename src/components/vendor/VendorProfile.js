@@ -2,16 +2,16 @@ import React, { useState, useEffect } from "react"
 import StarPicker from "react-star-picker"
 import { useParams } from "react-router-dom"
 import { getCurrentVendor, getVendor } from "../../managers/VendorManager"
-import EditVendor from "./EditVendor"
-import MessageModal from "../messages/MessageModal"
+import {EditVendor} from "./EditVendor"
+import {MessageModal} from "../messages/MessageModal"
 import { getCurrentHost } from "../../managers/HostManager"
 import { getHostVendorByStakeholders } from "../../managers/HostVendorManager"
-import HireModal from "../messages/HireModal"
-import RequestModal from "../messages/RequestModal"
-import FireModal from "../messages/FireModal"
-import ReviewList from "../reviews/ReviewList"
+import {HireModal} from "../messages/HireModal"
+import {RequestModal} from "../messages/RequestModal"
+import {FireModal} from "../messages/FireModal"
+import {ReviewList} from "../reviews/ReviewList"
 
-export default ({ isVendor }) => {
+export const VendorProfile = ({ isVendor }) => {
     const { vendorId } = useParams()
     const [vendor, setVendor] = useState({})
     const [host, setHost] = useState({})
@@ -66,7 +66,7 @@ export default ({ isVendor }) => {
                 <div className="card-content">
                     <div className="media">
                         <div className="media-left mx-5 image is-160x160">
-                            <img className="is-rounded" src={`http://localhost:8000${vendor.profile_image}`} />
+                            <img className="is-rounded" src={`http://localhost:8000${vendor.profile_image}`} alt="vendor profile"/>
                         </div>
                         <div className="media-content mx-5 px-5 ">
                             <h1 className="title py-1 m-0">{vendor.business_name}</h1>

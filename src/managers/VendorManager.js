@@ -7,8 +7,6 @@ export const getVendor = (id) => {
         .then(res => res.json())
 }
 
-
-
 export const getCurrentVendor = () => {
     return fetch(`http://localhost:8000/vendors/profile`, {
         headers: {

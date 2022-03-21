@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { getVendorTypes, getWeddingSizes } from "../auth/AuthManager"
 import { updateCurrentVendor } from "../../managers/VendorManager"
 
-export default ({ openEditModal, setOpenEditModal, vendor, setVendor }) => {
+export const EditVendor = ({ openEditModal, setOpenEditModal, vendor, setVendor }) => {
     const vendorTypeId = useRef()
     const businessName = useRef()
     const yearsInBusiness = useRef()

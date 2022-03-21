@@ -4,16 +4,16 @@ import { getCurrentHost, getHost } from "../../managers/HostManager"
 import { getHostVendorByStakeholders } from "../../managers/HostVendorManager"
 import { getMessages } from "../../managers/MessageManager"
 import { getCurrentVendor, getVendor } from "../../managers/VendorManager"
-import HireModal from "./HireModal"
-import MessageForm from "./MessageForm"
-import RequestModal from "./RequestModal"
-import FireModal from "./FireModal"
-import DenyModal from "./DenyModal"
-import QuitModal from "./QuitModal"
-import QuoteModal from "./QuoteModal"
+import {HireModal} from "./HireModal"
+import {MessageForm} from "./MessageForm"
+import {RequestModal} from "./RequestModal"
+import {FireModal} from "./FireModal"
+import {DenyModal} from "./DenyModal"
+import {QuitModal} from "./QuitModal"
+import {QuoteModal} from "./QuoteModal"
 import { Link } from "react-router-dom"
 
-export default ({ isVendor }) => {
+export const MessageList = ({ isVendor }) => {
     const { vendorId } = useParams()
     const { hostId } = useParams()
     const [host, setHost] = useState({})
@@ -89,7 +89,7 @@ export default ({ isVendor }) => {
                 isVendor
                     ? <>
 
-                        <h1  className="is-size-3 m-4"> Messages with{<Link to={`/hosts/${host.id}`}>{host.user?.username}</Link>}</h1>
+                        <h1  className="is-size-3 m-4"> Messages with {<Link to={`/hosts/${host.id}`}>{host.user?.username}</Link>}</h1>
 
 
                         <div id="button-controller-vendor" className="mb-5">

@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom"
 import { getCurrentHost } from "../../managers/HostManager"
 import { createMessage } from "../../managers/MessageManager"
 
-export default ({ openMessageModal, setOpenMessageModal, vendor }) => {
+export const MessageModal = ({ openMessageModal, setOpenMessageModal, vendor }) => {
     const body = useRef()
     const history = useHistory()
     const [host, setHost] = useState()

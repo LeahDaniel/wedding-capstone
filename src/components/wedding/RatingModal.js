@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react"
 import StarPicker from "react-star-picker"
 import { createRating, editRating } from "../../managers/ReviewAndRatingManager";
-import { getVendor } from "../../managers/VendorManager"
 
-export default ({ openRatingModal, setOpenRatingModal, rating, vendor, setRating }) => {
+export const RatingModal = ({ openRatingModal, setOpenRatingModal, rating, vendor, setRating }) => {
     const [ratingInput, setRatingInput] = useState(null);
 
     useEffect(() => {

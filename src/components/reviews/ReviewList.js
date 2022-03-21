@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import { deleteReview } from "../../managers/ReviewAndRatingManager"
 import { getVendor } from "../../managers/VendorManager"
-import ReviewModal from "./ReviewModal"
+import {ReviewModal} from "./ReviewModal"
 
 
-export default ({ setVendor, vendor, vendorReviews, host }) => {
+export const ReviewList = ({ setVendor, vendor, vendorReviews, host }) => {
     const [openReviewModal, setOpenReviewModal] = useState(false)
     const [currentReview, setCurrentReview] = useState({})
 

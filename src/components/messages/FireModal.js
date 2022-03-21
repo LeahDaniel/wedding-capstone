@@ -2,7 +2,7 @@ import { fireHostVendor } from "../../managers/HostVendorManager"
 import {useHistory} from 'react-router-dom'
 import { createMessage, getMessages } from "../../managers/MessageManager"
 
-export default ({ openFireModal, setOpenFireModal, hostVendor, setHostVendor, host, vendor, setMessages }) => {
+export const FireModal = ({ openFireModal, setOpenFireModal, hostVendor, setHostVendor, host, vendor, setMessages }) => {
     const history = useHistory()
     return (
         <>

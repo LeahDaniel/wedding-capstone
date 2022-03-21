@@ -1,6 +1,6 @@
 
 
-export default ({ userFilters, setUserFilters}) => {
+export const VendorFilters = ({ userFilters, setUserFilters}) => {
 
     const changeFilters = (evt) => {
         let copy = {...userFilters}

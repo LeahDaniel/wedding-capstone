@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { getVendorTypes } from "../auth/AuthManager"
 import { useHistory } from "react-router-dom"
 
-export default () => {
+export const VendorCategories = () => {
     const history = useHistory()
     const [vendorTypes, setVendorTypes] = useState([])
 
