@@ -16,7 +16,7 @@ export const Wedding = () => {
         }else if(boolean === "false") {
             setIsVendor(false)
         }
-    })
+    }, [])
 
     return (
         <>

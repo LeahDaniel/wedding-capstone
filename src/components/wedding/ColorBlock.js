@@ -26,11 +26,11 @@ export const ColorBlocks = ({ isVendor, hostId }) => {
     }, [isVendor, hostId])
 
     return (
-        <div className="box mt-5">
+        <div className="box" style={{ height: 300}}>
             <div className="subtitle has-text-centered">Color Theme</div>
             <div className="is-flex columns is-justify-content-center">
                 <div className="is-flex is-flex-direction-column is-justify-content-center column is-3 ">
-                    <div className="box m-0 r" style={{ backgroundColor: palette.color1, height: 200 }}></div>
+                    <div className="box m-0 r" style={{ backgroundColor: palette.color1, height: 150 }}></div>
                     {
                         openEdit && !isVendor
                             ? <fieldset className="fieldset is-flex is-flex-direction-column is-justify-content-center">
@@ -52,7 +52,7 @@ export const ColorBlocks = ({ isVendor, hostId }) => {
 
                 </div>
                 <div className="is-flex is-flex-direction-column is-justify-content-center column is-3 ">
-                    <div className="box m-0 r" style={{ backgroundColor: palette.color2, height: 200 }}></div>
+                    <div className="box m-0 r" style={{ backgroundColor: palette.color2, height: 150 }}></div>
                     {
                         openEdit && !isVendor
                             ? <fieldset className="fieldset is-flex is-flex-direction-column is-justify-content-center">
@@ -73,7 +73,7 @@ export const ColorBlocks = ({ isVendor, hostId }) => {
                     }
                 </div>
                 <div className="is-flex is-flex-direction-column is-justify-content-center column is-3 ">
-                    <div className="box m-0 r" style={{ backgroundColor: palette.color3, height: 200 }}></div>
+                    <div className="box m-0 r" style={{ backgroundColor: palette.color3, height: 150 }}></div>
                     {
                         openEdit && !isVendor
                             ? <fieldset className="fieldset is-flex is-flex-direction-column is-justify-content-center">

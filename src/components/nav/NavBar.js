@@ -34,13 +34,13 @@ export const NavBar = ({ isVendor }) => {
         <nav className="navbar is-dark mb-3 p-2" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <a className="navbar-item" href="/">
-                    <img src={Logo} height="3rem" /> <h1 className="title is-4 has-text-white ml-2">Wedding Planning</h1>
+                    <img src={Logo} height="3rem" alt="site logo" /> <h1 className="title is-4 has-text-white ml-2">Wedding Planning</h1>
                 </a>
-                <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" onClick={showMobileNavbar} ref={hamburger}>
+                <div role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" onClick={showMobileNavbar} ref={hamburger}>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
-                </a>
+                </div>
             </div>
 
             <div className="navbar-menu" ref={navbar}>
@@ -65,8 +65,8 @@ export const NavBar = ({ isVendor }) => {
                             showProfilePic
                                 ? <>{
                                     isVendor
-                                        ? <img id="profile-nav" src={`http://localhost:8000${currentVendor.profile_image}`} />
-                                        : <img id="profile-nav" src={`http://localhost:8000${currentHost.profile_image}`} />
+                                        ? <img id="profile-nav" alt="profile nav" src={`http://localhost:8000${currentVendor.profile_image}`} />
+                                        : <img id="profile-nav" alt="profile nav" src={`http://localhost:8000${currentHost.profile_image}`} />
                                 }</>
                                 : ""
                         }
@@ -82,13 +82,13 @@ export const NavBar = ({ isVendor }) => {
                             }
 
                             <hr className="navbar-divider" />
-                            <a className="navbar-item has-text-weight-semibold" onClick={() => {
+                            <div className="navbar-item has-text-weight-semibold" onClick={() => {
                                 localStorage.removeItem('wedding_token')
                                 localStorage.removeItem("is_vendor")
                                 history.push('/login')
                             }}>
                                 Logout
-                            </a>
+                            </div>
                         </div>
                     </div>
                 </div>
