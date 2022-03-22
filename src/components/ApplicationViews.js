@@ -1,7 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { ContractList } from "./contracts/ContractList"
-import {HostProfile} from "./host/HostProfile"
+import {HostProfile} from "./wedding/HostProfile"
 import {MessageList} from "./messages/MessageList"
 import {MessageView} from "./messages/MessageView"
 import {VendorCategories} from "./vendor/VendorCategories"

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { getCurrentHost, getHost } from "../../managers/HostManager"
-import {EditHost} from "./EditHost"
+import { ColorBlocks } from "./ColorBlock"
+import {EditWedding} from "./EditWedding"
 
 export const HostProfile = ({ isVendor }) => {
     const { hostId } = useParams()
@@ -30,7 +31,7 @@ export const HostProfile = ({ isVendor }) => {
 
     return (
         <section className="is-flex is-flex-direction-row is-justify-content-space-evenly mt-5 pt-5 columns">
-            <EditHost openEditModal={openEditModal} setOpenEditModal={setOpenEditModal} host={host} setHost={setHost} />
+            <EditWedding openEditModal={openEditModal} setOpenEditModal={setOpenEditModal} host={host} setHost={setHost} />
             <figure className="image is-300x300 mt-5 pt-5">
                 <img className="is-rounded" src={`http://localhost:8000${host.profile_image}`} alt='user profile'></img>
             </figure>
@@ -59,6 +60,7 @@ export const HostProfile = ({ isVendor }) => {
                         </div>
                     </div>
                 </section>
+                <ColorBlocks isVendor={isVendor} hostId={hostId}/>
             </div>
         </section>
     )
