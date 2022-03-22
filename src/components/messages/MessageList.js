@@ -66,7 +66,7 @@ export const MessageList = ({ isVendor }) => {
 
         if (host.id && vendor.id) {
             reloadResources()
-            const interval = setInterval(() => reloadResources(), 8000)
+            const interval = setInterval(() => reloadResources(), 5000)
             return () => {
                 clearInterval(interval);
             }

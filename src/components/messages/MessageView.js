@@ -20,7 +20,7 @@ export const MessageView = ({ isVendor }) => {
         }
 
         reloadResources()
-        const interval = setInterval(() => reloadResources(), 8000)
+        const interval = setInterval(() => reloadResources(), 5000)
         return () => {
             clearInterval(interval);
         }
