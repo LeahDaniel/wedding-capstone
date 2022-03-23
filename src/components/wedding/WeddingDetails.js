@@ -33,6 +33,8 @@ export const WeddingDetails = () => {
                     {host.street_address}, {host.city}, {host.state} {host.zip_code}
                 </div>
                 <div className="py-1 is-size-5">Guest Count: {host.wedding_size?.label}</div>
+                <div className="py-1 is-size-5">Total cost per hour of all vendors:${host.total_costs}</div>
+                
 
             </div>
             <div  className="has-text-centered title is-size-4 py-1 m-0" >Your Vendors</div>

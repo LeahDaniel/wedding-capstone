@@ -43,3 +43,24 @@ img{
   right: 12px;
   z-index: 100;
 }
+
+.cat-image-container {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin: 1rem
+}
+
+/* Centered text */
+.cat-image-label {
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-30%, -50%);
+  z-index: 1000;
+  width: 250px
+}
+
+.cat-image{
+  opacity: 0.6
+}

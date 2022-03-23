@@ -19,9 +19,14 @@ export const ApplicationViews = ({ isVendor }) => {
                     ? <Route exact path="/">
                         <VendorCategories />
                     </Route>
-                    : <Route exact path="/">
+                    : ""
+            }
+            {
+                isVendor === true
+                    ? <Route exact path="/">
                         <ContractList />
                     </Route>
+                    : ""
             }
             {
                 isVendor
