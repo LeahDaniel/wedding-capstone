@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { getCurrentHost, getHost } from "../../managers/HostManager"
 import { getHostVendorByStakeholders } from "../../managers/HostVendorManager"
 import { getMessages } from "../../managers/MessageManager"
@@ -11,7 +11,6 @@ import { FireModal } from "./FireModal"
 import { DenyModal } from "./DenyModal"
 import { QuitModal } from "./QuitModal"
 import { QuoteModal } from "./QuoteModal"
-import { Link } from "react-router-dom"
 
 export const MessageList = ({ isVendor }) => {
     const { vendorId } = useParams()

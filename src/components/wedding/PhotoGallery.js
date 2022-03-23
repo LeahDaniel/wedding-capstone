@@ -30,32 +30,22 @@ export const PhotoGallery = ({ isVendor, hostId }) => {
             <div>
                 <div id="gallery">
                     {
-                        isVendor === false
-                            ? <>
-                            {
-                                photos.map(photo => {
-                                    return <div className="img-wrap" key={photo.id}>
-                                        <span className="close delete"
+                        photos.map(photo => {
+                            return <div className="img-wrap" key={photo.id}>
+                                {
+                                    isVendor === false
+                                        ? <span className="close delete"
                                             onClick={() => {
                                                 deleteVisionPhoto(photo.id)
                                                     .then(() => getVisionPhotos(hostId))
                                                     .then(setPhotos)
                                             }}
                                         ></span>
-                                        <img src={`http://localhost:8000${photo.file}`} alt="inspiration" />
-                                    </div>
-                                })
-                            }
-                            </>
-                            : <>
-                            {
-                                photos.map(photo => {
-                                    return <div className="img-wrap" key={photo.id}>
-                                        <img src={`http://localhost:8000${photo.file}`} alt="inspiration" />
-                                    </div>
-                                })
-                            }
-                            </>
+                                        : ""
+                                }
+                                <img src={`http://localhost:8000${photo.file}`} alt="inspiration" />
+                            </div>
+                        })
                     }
                 </div>
                 {
@@ -66,7 +56,7 @@ export const PhotoGallery = ({ isVendor, hostId }) => {
                                     ? <div className="is-flex is-justify-content-center mb-5">
                                         <fieldset className="field my-0 mx-2">
                                             <label className="label m-0 has-text-centered" htmlFor="profilePhoto">New Inspiration Image</label>
-                                            <input className="input m-0" type="file" onChange={createImageString}/>
+                                            <input className="input m-0" type="file" onChange={createImageString} />
                                             <input className="file-input m-0" type="hidden" name="profilePhoto" value={string} />
                                         </fieldset>
                                         <button className="button is-normal is-align-self-flex-end" onClick={() => {

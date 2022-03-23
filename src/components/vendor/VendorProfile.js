@@ -10,6 +10,7 @@ import {HireModal} from "../messages/HireModal"
 import {RequestModal} from "../messages/RequestModal"
 import {FireModal} from "../messages/FireModal"
 import {ReviewList} from "../reviews/ReviewList"
+import { Slideshow } from "./Slideshow"
 
 export const VendorProfile = ({ isVendor }) => {
     const { vendorId } = useParams()
@@ -131,8 +132,8 @@ export const VendorProfile = ({ isVendor }) => {
                                     }
                                 </>
                         }
-
                     </div>
+                    <Slideshow isVendor={isVendor} vendorId={vendor.id}/>
 
                 </div>
                 {
