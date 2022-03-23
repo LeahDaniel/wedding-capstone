@@ -45,7 +45,7 @@ export const Login = ({setIsVendor}) => {
                 <fieldset className="field mb-5">
                     <label htmlFor="inputUsername" className="label"> Username</label>
                     <div className="control">
-                        <input ref={username} type="username" id="username" className="input" placeholder="Username address" required autoFocus />
+                        <input ref={username} type="username" id="username" className="input" placeholder="Username" required autoFocus />
                     </div>
                 </fieldset>
                 <fieldset className="field mb-5">

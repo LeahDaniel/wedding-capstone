@@ -95,7 +95,7 @@ export const RegisterHost = ({setIsVendor}) => {
                 <fieldset className="field mb-5">
                     <label className="label" htmlFor="firstName"> First Name </label>
                     <div className="control">
-                        <input className="input" ref={firstName} type="text" name="firstName" placeholder="First name" required autoFocus />
+                        <input className="input" ref={firstName} type="text" name="firstName" placeholder="First name" required  autofocus/>
                     </div>
                 </fieldset>
                 <fieldset className="field mb-5">
@@ -164,25 +164,25 @@ export const RegisterHost = ({setIsVendor}) => {
                 <fieldset className="field mb-5">
                     <label className="label" htmlFor="streetAddress"> Venue Street Address </label>
                     <div className="control">
-                        <input className="input" ref={streetAddress} type="text" name="streetAddress" placeholder="First name" required autoFocus />
+                        <input className="input" ref={streetAddress} type="text" name="streetAddress" placeholder="First name" required  />
                     </div>
                 </fieldset>
                 <fieldset className="field mb-5">
                     <label className="label" htmlFor="city"> Venue City </label>
                     <div className="control">
-                        <input className="input" ref={city} type="text" name="city" placeholder="First name" required autoFocus />
+                        <input className="input" ref={city} type="text" name="city" placeholder="First name" required  />
                     </div>
                 </fieldset>
                 <fieldset className="field mb-5">
                     <label className="label" htmlFor="state"> Venue State </label>
                     <div className="control">
-                        <input className="input" ref={state} type="text" name="state" placeholder="First name" required autoFocus />
+                        <input className="input" ref={state} type="text" name="state" placeholder="First name" required  />
                     </div>
                 </fieldset>
                 <fieldset className="field mb-5">
                     <label className="label" htmlFor="zipCode"> Venue Zip Code </label>
                     <div className="control">
-                        <input className="input" ref={zipCode} type="text" name="zipCode" placeholder="First name" required autoFocus />
+                        <input className="input" ref={zipCode} type="text" name="zipCode" placeholder="First name" required  />
                     </div>
                 </fieldset>
                 <fieldset className="field mb-5">

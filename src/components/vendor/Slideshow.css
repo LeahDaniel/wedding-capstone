@@ -64,7 +64,7 @@
   padding: 8px 12px;
   position: absolute;
   top: 0;
-  z-index: 1000;
+  z-index: 35;
   background-color: rgba(0, 0, 0, 0.132);
 }
 

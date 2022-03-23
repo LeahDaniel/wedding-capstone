@@ -120,12 +120,12 @@ export const MessageList = ({ isVendor }) => {
                                             </>
                                             : <>
                                                 <button
-                                                    className="button"
+                                                    className="button mx-1"
                                                     onClick={() => setOpenQuoteModal(true)}>
                                                     Send a Quote
                                                 </button>
                                                 <button
-                                                    className="button"
+                                                    className="button mx-1"
                                                     onClick={() => setOpenDenyModal(true)}>
                                                     Deny Quote Request
                                                 </button>

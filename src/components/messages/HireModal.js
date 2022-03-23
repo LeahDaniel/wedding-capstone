@@ -11,12 +11,9 @@ export const HireModal = ({openHireModal, setOpenHireModal, hostVendor, setHostV
                 <div className="modal-background"></div>
                 <div className="modal-content">
                     <div className="box">
-                        <button className="delete" onClick={() => setOpenHireModal(false)}></button>
-                        <p>Accept this quote from the vendor and hire them for your event?</p>
-                        <button className="button" onClick={() => setOpenHireModal(false)}>
-                            No
-                        </button>
-                        <button className="button" onClick={() => {
+                        <p className="p-4">Accept this quote from the vendor and hire them for your event?</p>
+                        
+                        <button className="button mx-1" onClick={() => {
                             hireHostVendor(hostVendor.id)
                                 .then(setHostVendor)
                                 .then(() => {
@@ -37,6 +34,9 @@ export const HireModal = ({openHireModal, setOpenHireModal, hostVendor, setHostV
                                 .then(() => setOpenHireModal(false))
                         }}>
                             Yes
+                        </button>
+                        <button className="button mx-1" onClick={() => setOpenHireModal(false)}>
+                            No
                         </button>
                     </div>
                 </div>

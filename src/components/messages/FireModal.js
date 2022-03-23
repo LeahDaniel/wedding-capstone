@@ -10,12 +10,9 @@ export const FireModal = ({ openFireModal, setOpenFireModal, hostVendor, setHost
                 <div className="modal-background"></div>
                 <div className="modal-content">
                     <div className="box">
-                        <button className="delete" onClick={() => setOpenFireModal(false)}></button>
-                        <p>Are you sure? The vendor will be notified and you will be responsible for any cancellation fees.</p>
-                        <button className="button" onClick={() => setOpenFireModal(false)}>
-                            No
-                        </button>
-                        <button className="button" onClick={() => {
+                        <p className="p-4">Are you sure? The vendor will be notified and you will be responsible for any cancellation fees.</p>
+                        
+                        <button className="button mx-1" onClick={() => {
                             fireHostVendor(hostVendor.id)
                                 .then(setHostVendor)
                                 .then(() => {
@@ -37,6 +34,9 @@ export const FireModal = ({ openFireModal, setOpenFireModal, hostVendor, setHost
                                 .then(() => setOpenFireModal(false))
                         }}>
                             Yes
+                        </button>
+                        <button className="button mx-1" onClick={() => setOpenFireModal(false)}>
+                            No
                         </button>
                     </div>
                 </div>

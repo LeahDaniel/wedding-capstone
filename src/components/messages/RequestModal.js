@@ -22,12 +22,8 @@ export const RequestModal = ({openRequestModal, setOpenRequestModal, setHostVend
                 <div className="modal-background"></div>
                 <div className="modal-content">
                     <div className="box">
-                        <button className="delete" onClick={() => setOpenRequestModal(false)}></button>
-                        <p>Send your wedding details to the vendor and request a quote?</p>
-                        <button className="button" onClick={() => setOpenRequestModal(false)}>
-                            No
-                        </button>
-                        <button className="button" onClick={() => {
+                        <p className="p-4">Send your wedding details to the vendor and request a quote?</p>
+                        <button className="button mx-1" onClick={() => {
                             createHostVendor({vendor: vendor.id})
                                 .then(setHostVendor)
                                 .then(() => {
@@ -51,6 +47,9 @@ export const RequestModal = ({openRequestModal, setOpenRequestModal, setHostVend
                                 .then(() => setOpenRequestModal(false))
                         }}>
                             Yes
+                        </button>
+                        <button className="button mx-1" onClick={() => setOpenRequestModal(false)}>
+                            No
                         </button>
                     </div>
                 </div>

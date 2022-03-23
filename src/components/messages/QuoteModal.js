@@ -11,17 +11,16 @@ export const QuoteModal = ({ openQuoteModal, setOpenQuoteModal, hostVendor, setH
                 <div className="modal-background"></div>
                 <div className="modal-content">
                     <div className="box">
-                        <button className="delete" onClick={() => setOpenQuoteModal(false)}></button>
-                        <p>Accept this hire request and send a quote of:</p>
+                        <p className="p-4">Accept this hire request and send a quote of:</p>
                         <fieldset className="field mb-5">
-                            <div className="control">
-                                $<input className="input" ref={costPerHour} type="number" name="costPerHour" required />/hr
+                            <div className="control is-flex">
+                                <p className="pl-5">$</p>
+                                <input className="input mx-5" ref={costPerHour} type="number" name="costPerHour" required />
+                                <p className="pr-5">/hr</p>
                             </div>
                         </fieldset>
-                        <button className="button" onClick={() => setOpenQuoteModal(false)}>
-                            Cancel
-                        </button>
-                        <button className="button" onClick={() => {
+                        
+                        <button className="button mx-1" onClick={() => {
                             quoteHostVendor(hostVendor.id, costPerHour.current.value)
                                 .then((res) => {
                                     createMessage({
@@ -36,6 +35,9 @@ export const QuoteModal = ({ openQuoteModal, setOpenQuoteModal, hostVendor, setH
                                 .then(() => setOpenQuoteModal(false))
                         }}>
                             Submit
+                        </button>
+                        <button className="button mx-1" onClick={() => setOpenQuoteModal(false)}>
+                            Cancel
                         </button>
                     </div>
                 </div>

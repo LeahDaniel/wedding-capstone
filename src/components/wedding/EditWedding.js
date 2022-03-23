@@ -53,8 +53,8 @@ export const EditWedding = ({ openEditModal, setOpenEditModal, host, setHost }) 
             <div id="edit-modal" className={openEditModal ? "modal is-active" : "modal"}>
                 <div className="modal-background"></div>
                 <div className="modal-content has-background-white">
-                    <form className="column mt-6 is-two-thirds" onSubmit={editHost}>
-                        <h1 className="title">Edit Your Wedding</h1>
+                    <form className="m-6" onSubmit={editHost}>
+                        <h1 className="subtitle has-text-centered">Edit Your Wedding</h1>
                         <fieldset className="field my-5">
                             <label className="label">Wedding Size</label>
                             <div className="control">
@@ -92,33 +92,35 @@ export const EditWedding = ({ openEditModal, setOpenEditModal, host, setHost }) 
                         <fieldset className="field mb-5">
                             <label className="label" htmlFor="streetAddress"> Venue Street Address </label>
                             <div className="control">
-                                <input className="input" ref={streetAddress} type="text" name="streetAddress" placeholder="First name" required autoFocus />
+                                <input className="input" ref={streetAddress} type="text" name="streetAddress" required />
                             </div>
                         </fieldset>
                         <fieldset className="field mb-5">
                             <label className="label" htmlFor="city"> Venue City </label>
                             <div className="control">
-                                <input className="input" ref={city} type="text" name="city" placeholder="First name" required autoFocus />
+                                <input className="input" ref={city} type="text" name="city" required />
                             </div>
                         </fieldset>
                         <fieldset className="field mb-5">
                             <label className="label" htmlFor="state"> Venue State </label>
                             <div className="control">
-                                <input className="input" ref={state} type="text" name="state" placeholder="First name" required autoFocus />
+                                <input className="input" ref={state} type="text" name="state" required />
                             </div>
                         </fieldset>
                         <fieldset className="field mb-5">
                             <label className="label" htmlFor="zipCode"> Venue Zip Code </label>
                             <div className="control">
-                                <input className="input" ref={zipCode} type="text" name="zipCode" placeholder="First name" required autoFocus />
+                                <input className="input" ref={zipCode} type="text" name="zipCode" required/>
                             </div>
                         </fieldset>
-                        <fieldset className="field mb-5">
-                            <button className="button is-link" type="submit">Submit</button>
-                        </fieldset>
-                        <fieldset className="field mb-5">
-                            <button className="button is-link" onClick={() => setOpenEditModal(false)}>Cancel</button>
-                        </fieldset>
+                        <div className="is-flex is-justify-content-space-between">
+                            <fieldset className="field mb-5">
+                                <button className="button is-link" type="submit">Submit</button>
+                            </fieldset>
+                            <fieldset className="field mb-5">
+                                <button className="button is-link" onClick={() => setOpenEditModal(false)}>Cancel</button>
+                            </fieldset>
+                        </div>
                     </form>
                 </div>
             </div>

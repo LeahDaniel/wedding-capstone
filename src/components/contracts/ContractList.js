@@ -11,7 +11,7 @@ export const ContractList = () => {
 
     return (
         <>
-            <h1 className="title has-text-centered my-5 py-5">Your Upcoming Events</h1>
+            <h1 className="is-size-4 has-text-centered my-5 py-5">Your Upcoming Events</h1>
             <div>
                 {
                     contracts.map(contract => <Contract key={contract.id} contract={contract} />)
