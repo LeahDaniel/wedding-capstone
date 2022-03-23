@@ -60,7 +60,7 @@ export const EditVendor = ({ openEditModal, setOpenEditModal, vendor, setVendor 
                 <div className="modal-background"></div>
                 <div className="modal-content has-background-white">
                     <form className="m-6" onSubmit={editVendor} >
-                        <h2>Edit your Business Info</h2>
+                        <h2 className="has-text-centered subtitle">Edit your Business Info</h2>
                         <fieldset className="field my-5">
                             <label className="label">Vendor Type</label>
                             <div className="control">
@@ -144,12 +144,14 @@ export const EditVendor = ({ openEditModal, setOpenEditModal, vendor, setVendor 
                                 <input className="input" ref={zipCode} type="text" name="zipCode" placeholder="Business zip code" required />
                             </div>
                         </fieldset>
-                        <fieldset className="field mb-5">
-                            <button className="button is-link" type="submit">Submit</button>
-                        </fieldset>
-                        <fieldset className="field mb-5">
-                            <button className="button is-link" onClick={() => setOpenEditModal(false)}>Cancel</button>
-                        </fieldset>
+                        <div className="is-flex is-justify-content-space-between">
+                            <fieldset className="field mb-5 ">
+                                <button className="button is-link" type="submit">Submit</button>
+                            </fieldset>
+                            <fieldset className="field mb-5 ">
+                                <button className="button is-link" onClick={() => setOpenEditModal(false)}>Cancel</button>
+                            </fieldset>
+                        </div>
                     </form>
 
                 </div>
