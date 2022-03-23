@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { getRating, getReview } from "../../managers/ReviewAndRatingManager"
-import {ReviewModal} from "../reviews/ReviewModal"
-import { RatingModal} from "./RatingModal"
+import { ReviewModal } from "../reviews/ReviewModal"
+import { RatingModal } from "./RatingModal"
 
 export const WeddingVendor = ({ hostVendor, host }) => {
     const [openReviewModal, setOpenReviewModal] = useState(false)
     const [openRatingModal, setOpenRatingModal] = useState(false)
+    const [hasRated, setHasRated] = useState(false)
     const [rating, setRating] = useState(null)
     const [review, setReview] = useState(null)
 
@@ -36,7 +37,8 @@ export const WeddingVendor = ({ hostVendor, host }) => {
                 vendor={hostVendor.vendor} review={review} setReview={setReview} />
             <RatingModal openRatingModal={openRatingModal}
                 setOpenRatingModal={setOpenRatingModal}
-                vendor={hostVendor.vendor} rating={rating} setRating={setRating} />
+                vendor={hostVendor.vendor} rating={rating} setRating={setRating}
+                setHasRated={setHasRated} />
             <div className="card m-3 column is-two-thirds">
                 <div className="card-content">
                     <div className="media">
@@ -90,6 +92,14 @@ export const WeddingVendor = ({ hostVendor, host }) => {
                                 : ""
                         }
                     </div>
+                        {
+                            hasRated
+                                ? <div class="notification is-info is-light has-text-centered">
+                                    <button class="delete" onClick={() => setHasRated(false)}></button>
+                                    Your rating has been submitted!
+                                </div>
+                                : ""
+                        }
                 </div>
             </div>
         </div>

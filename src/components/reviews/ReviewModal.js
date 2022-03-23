@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from "react"
+import { useHistory } from "react-router-dom"
 import { createReview, editReview } from "../../managers/ReviewAndRatingManager"
 import { getVendor } from "../../managers/VendorManager"
 
 export const ReviewModal = ({ openReviewModal, setOpenReviewModal, review, vendor, setVendor, setReview }) => {
     const reviewInput = useRef()
+    const history = useHistory()
 
     useEffect(() => {
         if(review){
@@ -38,6 +40,7 @@ export const ReviewModal = ({ openReviewModal, setOpenReviewModal, review, vendo
                                 .then(() => getVendor(vendor.id))
                                 .then(setVendor)
                                 .then(() => setOpenReviewModal(false))
+                                .then(() => history.push(`/vendors/${vendor.id}`))
                             } else {
                                 createReview(newReview)
                                 .then((res) => {
@@ -51,7 +54,7 @@ export const ReviewModal = ({ openReviewModal, setOpenReviewModal, review, vendo
                                         setVendor(res)
                                     }
                                 })
-                                .then(() => setOpenReviewModal(false))
+                                .then(() => history.push(`/vendors/${vendor.id}`))
                             }
                         }}>
                             Submit

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import StarPicker from "react-star-picker"
 import { createRating, editRating } from "../../managers/ReviewAndRatingManager";
 
-export const RatingModal = ({ openRatingModal, setOpenRatingModal, rating, vendor, setRating }) => {
+export const RatingModal = ({ openRatingModal, setOpenRatingModal, rating, vendor, setRating, setHasRated }) => {
     const [ratingInput, setRatingInput] = useState(null);
 
     useEffect(() => {
@@ -34,10 +34,12 @@ export const RatingModal = ({ openRatingModal, setOpenRatingModal, rating, vendo
 
                             if (rating) {
                                 editRating(rating.id, newRating)
+                                    .then(() => setHasRated(true))
                                     .then(() => setOpenRatingModal(false))
                             } else {
                                 createRating(newRating)
                                     .then(setRating)
+                                    .then(() => setHasRated(true))
                                     .then(() => setOpenRatingModal(false))
                             }
                         }}>
